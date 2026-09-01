@@ -4,13 +4,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import main.java.io.quicksiiver.drillx.coordinates.Point;
-import main.java.io.quicksiiver.drillx.field.movement.Movement;
 
 public class Squad {
     // variables
     private RotationDirection rotationDirection;
-    private final Point[] SQUAD_MEMBER_POSITIONS; // marcher -> position
-    private final Point POS;
+    private SquadFormation formation; // marcher -> position
+    private Point pos;
 
     private final String KEY;
     private final int NUMBER;
@@ -20,11 +19,11 @@ public class Squad {
     private static HashMap<String, Integer> keyNumberMap = new HashMap<>();
 
     // CONSTRUCTORS
-    public Squad(final RotationDirection rotationDirection, final Point[] squadMemberPositions, final String key, final Point pos) {
+    public Squad(final RotationDirection rotationDirection, final SquadFormation formation, final String key, final Point pos) {
         setRotationDirection(rotationDirection);
-        SQUAD_MEMBER_POSITIONS = squadMemberPositions;
+        this.formation = formation;
         KEY = key;
-        POS = pos;
+        this.pos = pos;
         
         // update keymap or
         if (keyNumberMap.containsKey(key)) {
@@ -37,7 +36,7 @@ public class Squad {
         }
     }
     public Squad(final String key) {
-        this(RotationDirection.NORTH, new Point[4], key, new Point(8, 8));
+        this(RotationDirection.NORTH, new SquadFormation(new Point[4]), key, new Point(8, 8));
     }
      
 
@@ -45,8 +44,8 @@ public class Squad {
     public RotationDirection getRotationDirection() {
         return rotationDirection;
     }
-    public Point[] getSquadMemberPositions() {
-        return SQUAD_MEMBER_POSITIONS.clone();
+    public SquadFormation getFormation() {
+        return new SquadFormation(formation);
     }
     public String getKey() {
         return KEY;
@@ -55,24 +54,22 @@ public class Squad {
         return NUMBER;
     }
     public Point getPos() {
-        return new Point(POS);
+        return new Point(pos);
     }
     public int getNumberOfSquadMembers() {
-        return SQUAD_MEMBER_POSITIONS.length;
+        return formation.formation.length;
     }
 
     // SETTERS
     private void setRotationDirection(RotationDirection rotationDirection) {
         this.rotationDirection = rotationDirection;
     }
-    private void setSquadMemberPositions(Point[] squadMemberPositions) {
+    private void setSquadMemberPositions(SquadFormation squadMemberPositions) {
         // data validation
-        if (squadMemberPositions.length == SQUAD_MEMBER_POSITIONS.length) {
-            for (int i = 0; i < SQUAD_MEMBER_POSITIONS.length; i++) {
-                SQUAD_MEMBER_POSITIONS[i].setPos(squadMemberPositions[i]);
-            }
+        if (squadMemberPositions.formation.length == getNumberOfSquadMembers()) {
+            formation.formation = squadMemberPositions.formation;
         } else {
-            throw new IllegalArgumentException("Point[] squadMemberPositions must be of length " + SQUAD_MEMBER_POSITIONS.length);
+            throw new IllegalArgumentException("SquadFormation squadMemberPositions must be of length " + formation.formation.length);
         }
     }
     
@@ -83,6 +80,13 @@ public class Squad {
         // check each movement type
         switch (movement.KEY) {
             case Movement.FORWARD_MARCH_KEY -> { translateSquad(rotationDirection, movement.duration); }
+            case Movement.COLUMN_LEFT_KEY -> {
+                // if ()
+
+                // switch (movement.duration) {
+                //     case 8 -> {  }
+                // }
+            }
         }
 
         movement.duration--;
@@ -96,17 +100,17 @@ public class Squad {
         }
     }
     // translates the squad member positions
-    public void translateSquadMemberPositions(Point[] tranlationPoints) {
+    private void translateSquadMemberPositions(Point[] tranlationPoints) {
         // data validation
         if (!validatePointArray(tranlationPoints)) { 
             throw new IllegalArgumentException("Point[] translationPoints must be of length " + getNumberOfSquadMembers()); 
         }
 
-        Point[] newPositions = new Point[SQUAD_MEMBER_POSITIONS.length];
+        SquadFormation newPositions = new SquadFormation(new Point[formation.formation.length]);
 
         // loop through each squad member and copy the positions to a new point
-        for (int i = 0; i < SQUAD_MEMBER_POSITIONS.length; i++) {
-            newPositions[i] = new Point(SQUAD_MEMBER_POSITIONS[i].getX() + tranlationPoints[i].getX(), SQUAD_MEMBER_POSITIONS[i].getY() + tranlationPoints[i].getY());
+        for (int i = 0; i < formation.formation.length; i++) {
+            newPositions.formation[i] = new Point(formation.formation[i].getX() + tranlationPoints[i].getX(), formation.formation[i].getY() + tranlationPoints[i].getY());
         }
 
         setSquadMemberPositions(newPositions); // apply changes
@@ -117,9 +121,9 @@ public class Squad {
     }
 
     private void translateSquad(RotationDirection rotationDirection, int movementAmount) {
-        if (Arrays.stream(RotationDirection.NORTH_DIRECTIONS).anyMatch(rotationDirection::equals)) { POS.translate(0, -movementAmount); }
-        if (Arrays.stream(RotationDirection.SOUTH_DIRECTIONS).anyMatch(rotationDirection::equals)) { POS.translate(0, movementAmount); }
-        if (Arrays.stream(RotationDirection.EAST_DIRECTIONS).anyMatch(rotationDirection::equals)) { POS.translate(movementAmount, 0); }
-        if (Arrays.stream(RotationDirection.WEST_DIRECTIONS).anyMatch(rotationDirection::equals)) { POS.translate(-movementAmount, 0); }
+        if (Arrays.stream(RotationDirection.NORTH_DIRECTIONS).anyMatch(rotationDirection::equals)) { pos.translate(0, -movementAmount); }
+        if (Arrays.stream(RotationDirection.SOUTH_DIRECTIONS).anyMatch(rotationDirection::equals)) { pos.translate(0, movementAmount); }
+        if (Arrays.stream(RotationDirection.EAST_DIRECTIONS).anyMatch(rotationDirection::equals)) { pos.translate(movementAmount, 0); }
+        if (Arrays.stream(RotationDirection.WEST_DIRECTIONS).anyMatch(rotationDirection::equals)) { pos.translate(-movementAmount, 0); }
     }
 }
