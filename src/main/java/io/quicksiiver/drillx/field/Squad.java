@@ -86,7 +86,7 @@ public class Squad {
                 // switch (movement.duration) {
                 //     case 8 -> {  }
                 // }
-            }
+            } 
         }
 
         movement.duration--;
