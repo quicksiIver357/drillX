@@ -1,12 +1,13 @@
 package main.java.io.quicksiiver.drillx.field;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import main.java.io.quicksiiver.drillx.coordinates.Point;
 
@@ -27,27 +28,114 @@ public class SquadFormation {
 
     // constructors
     public SquadFormation(Point[] formation) {
-        this.formation = formation;
+        this.formation = formation.clone();
     }
     public SquadFormation(SquadFormation formation) {
         this.formation = formation.formation;
     }
 
-    // load formations from json
+    // LOADING
     public static SquadFormation loadFormation(Gson gson, Path path) throws IOException {
+        // read the data into a double[][] and then convert to a Point[] and then to SquadFormation
         // read data
         String json = Files.readString(path);
-        JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
-        double[][] values = gson.fromJson(jsonObject.get("points"), double[][].class);
+        double[][] formationArray = gson.fromJson(json, double[][].class);
 
-        // create point array
-        Point[] points = new Point[values.length];
-        for (int i = 0; i < values.length; i++) {
-            points[i] = new Point(values[i][0], values[i][1]);
+        // create point array and store values
+        Point[] pointArray = new Point[formationArray.length];
+        for (int i = 0; i < pointArray.length; i++) {
+            pointArray[i] = new Point(formationArray[i]);
         }
 
-        // create SquadFormation and return it
-        return new SquadFormation(points);
+        // convert to SquadFormation and return
+        return new SquadFormation(pointArray);
+    }
+    public static SquadFormation[] loadFormationAnimation(Gson gson, Path path) throws IOException {
+        // read the data into a double[][] and then convert to a Point[] and then to SquadFormation
+        // read data
+        String json = Files.readString(path);
+        double[][][] formationArray = gson.fromJson(json, double[][][].class);
+
+        // create point array and store values
+        Point[][] pointArray = new Point[formationArray.length][formationArray[0].length];
+        for (int i = 0; i < pointArray.length; i++) {
+            for (int j = 0; j < pointArray[i].length; j++) {
+                pointArray[i][j] = new Point(formationArray[i][j]);
+            }
+        }
+
+        // convert to SquadFormation and return
+        SquadFormation[] squadFormationAnimation = new SquadFormation[pointArray.length];
+        for (int i = 0; i < pointArray.length; i++) {
+            squadFormationAnimation[i] = new SquadFormation(pointArray[i]);
+        }
+
+        return squadFormationAnimation;
+    }
+    public static HashMap<String, SquadFormation> loadAllFormations(Gson gson, Path path) {
+        // for each file in the formations folder, load it to a SquadFormation and store it
+        // create a HashMap to store the SquadFormations based on the file names
+        // create HashMap
+        HashMap<String, SquadFormation> formations = new HashMap<>();
+
+        // get a list of all the files in the directory
+        // up until end of for loop is from https://stackoverflow.com/questions/4917326/how-to-iterate-over-the-files-of-a-certain-directory-in-java
+        File formationDir = new File(path.toString());
+        File[] formationDirectoryListing = formationDir.listFiles();
+
+        // iterate through them
+        if (formationDirectoryListing != null) {
+            for (File child : formationDirectoryListing) {
+                try {
+                    // load from path and then put it in the hashmap
+                    SquadFormation formation = SquadFormation.loadFormation(gson, child.toPath());
+                    formations.put(child.getName(), formation);
+                } catch (IOException e) {
+                    // error message
+                    System.out.println("Error: failed to load path json for filepath " + child.toString());
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // return them
+        return formations;
+    }
+    public static HashMap<String, SquadFormation[]> loadAllFormationAnimations(Gson gson, Path path) {
+        // for each file in the formation animations folder, load it to a SquadFormation[] and store it
+        // create a HashMap to store the SquadFormations based on the file names
+        // create HashMap
+        HashMap<String, SquadFormation[]> formations = new HashMap<>();
+
+        // get a list of all the files in the directory
+        // up until end of for loop is from https://stackoverflow.com/questions/4917326/how-to-iterate-over-the-files-of-a-certain-directory-in-java
+        File formationDir = new File(path.toString());
+        File[] formationDirectoryListing = formationDir.listFiles();
+
+        // iterate through them
+        if (formationDirectoryListing != null) {
+            for (File child : formationDirectoryListing) {
+                try {
+                    // load from path and then put it in the hashmap
+                    SquadFormation[] formation = SquadFormation.loadFormationAnimation(gson, child.toPath());
+                    formations.put(child.getName(), formation);
+                } catch (IOException e) {
+                    // error message
+                    System.out.println("Error: failed to load path json for filepath " + child.toString());
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // return them
+        return formations;
+    }
+
+    // tools and such
+    public static String getFormationAnimationFileNameFromFormationFileNames(String formationName1, String formationName2) {
+        // remove the .json from the first one
+        String formationAnimationName = formationName1.substring(0, formationName1.length() - 5) + "_to_" + formationName2;
+        return formationAnimationName;
     }
 
     // debug

@@ -76,11 +76,11 @@ public class Squad {
 
     // functions
     // applies a movement, returns true if there is still some left, returns false if the movement is complete
-    public boolean applyMovement(Movement movement) {
+    public boolean applyMovement(MovementType movement) {
         // check each movement type
         switch (movement.KEY) {
-            case Movement.FORWARD_MARCH_KEY -> { translateSquad(rotationDirection, movement.duration); }
-            case Movement.COLUMN_LEFT_KEY -> {
+            case MovementType.FORWARD_MARCH_KEY -> { translateSquad(rotationDirection, movement.duration); }
+            case MovementType.COLUMN_LEFT_KEY -> {
                 // if ()
 
                 // switch (movement.duration) {
