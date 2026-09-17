@@ -1,0 +1,46 @@
+package client.java.io.quicksiiver.drillx.rendering.renderer;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.lang.reflect.Field;
+
+import main.java.io.quicksiiver.drillx.coordinates.Point;
+import main.java.io.quicksiiver.drillx.field.Drill;
+import main.java.io.quicksiiver.drillx.field.Squad;
+
+public class FieldRenderer {
+    // public static void drawSquads(Graphics g, Drill drill) {
+    //     for (Squad squad : drill.squads) {
+    //         Point pos = squad.getPos(); // get squad position
+
+    //         g.setColor(Color.RED);
+    //         g.fillOval((int) pos.getX(), (int) pos.getY(), 15, 15);
+    //     }
+    // }
+
+    // CLASSIFIERS
+    public static final String YARDS = "yards";
+    public static final String COORDINATES = "coordinates";
+
+    // the private constructor makes it un-instantiatable
+    private FieldRenderer() { throw new AssertionError("FieldRenderer should have no instances."); }
+
+    // DEBUG
+    public static void testRender(Graphics g, int scale) {
+        g.setColor(Color.RED);
+        g.fillOval(scale / 30, scale / 30, scale / 30, scale / 30);
+    }
+ 
+    // SMALLER RENDER METHODS
+    private static void renderFieldObjects(Graphics g, String type, int scale) {
+        g.fillRect(0, 0, (int) (scale * 0.85), (int) (scale * 0.65));
+    }
+
+    // MAIN RENDER METHOD
+    public static void render(Graphics g, Drill d, int scale) {
+        renderFieldObjects(g, YARDS, scale);
+    }
+
+    // HELPER METHODS
+    // private static void 
+}
