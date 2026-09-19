@@ -6,11 +6,10 @@ import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import client.java.io.quicksiiver.drillx.rendering.renderer.MainRenderer;
+// import client.java.io.quicksiiver.drillx.rendering.renderer.MainRenderer;
 import main.java.io.quicksiiver.drillx.field.Drill;
 import main.java.io.quicksiiver.drillx.field.Formation;
 import main.java.io.quicksiiver.drillx.field.FormationAnimation;
-import main.java.io.quicksiiver.drillx.field.Squad;
 
 public class Main {
     // filepaths
@@ -33,13 +32,13 @@ public class Main {
         // drill.squads.add(new Squad(Squad.NO_KEY));
 
         // init screen
-        MainRenderer renderer = MainRenderer.getInstance(drill);
+        // MainRenderer renderer = MainRenderer.getInstance(drill);
         
         // main loop
         MAIN:
         while (true) {
             // render stuff
-            renderer.render();
+            // renderer.render();
         }
 
 

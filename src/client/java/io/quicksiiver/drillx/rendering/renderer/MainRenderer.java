@@ -1,55 +1,68 @@
 package client.java.io.quicksiiver.drillx.rendering.renderer;
 
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Graphics;
+import java.awt.GridBagConstraints;
 
 import javax.swing.JFrame;
 
-import client.java.io.quicksiiver.drillx.rendering.ColorPanel;
-import main.java.io.quicksiiver.drillx.field.Drill;
+import client.java.io.quicksiiver.drillx.rendering.renderer.layout.MainLayout;
+import client.java.io.quicksiiver.drillx.rendering.renderer.panels.main.DrillPanel;
+import client.java.io.quicksiiver.drillx.rendering.renderer.panels.main.FieldPanel;
+import client.java.io.quicksiiver.drillx.rendering.renderer.panels.main.MainPanel;
+import client.java.io.quicksiiver.drillx.rendering.renderer.panels.main.SquadPanel;
 
-// this class is a singleton
 public class MainRenderer {
-    private static MainRenderer instance;
+    public static final MainRenderer instance = new MainRenderer();
 
-    // stuff for initialization
-    private JFrame screen = new JFrame();
-    private ColorPanel panel;
-    private Container pane;
-    private Graphics graphics;
+    private MainRenderer() { // hides default constructor
+        // Create and set up the window.
+        JFrame frame = new JFrame("drillX");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    public static MainRenderer getInstance(Drill d) {
-        // make sure it has not been initialized yet
-        if (instance == null) { instance = new MainRenderer(d); }
-        return instance;
-    }
-    public static MainRenderer getInstance() {
-        if (instance == null) { throw new IllegalStateException("MainRenderer has not been initialized"); }
-        return instance;
-    }
+        // create panels
+        FieldPanel fieldPanel = new FieldPanel(Color.BLUE);
+        SquadPanel squadPanel = new SquadPanel(Color.RED);
+        DrillPanel drillPanel = new DrillPanel(Color.YELLOW);
+        MainPanel mainPanel = new MainPanel(new MainLayout(fieldPanel, squadPanel, drillPanel), Color.BLACK);
 
-    // the private constructor makes it so there can only be one
-    private MainRenderer(Drill d) {
-        // load screen
-        screen.setTitle("drillX");
-        screen.setSize(300, 200);
-        screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // create constainsts
+        GridBagConstraints fieldGridBagConstraints = new GridBagConstraints();
+        GridBagConstraints squadGridBagConstraints = new GridBagConstraints();
+        GridBagConstraints drillGridBagConstraints = new GridBagConstraints();
 
-        // set up panel for drawing
-        panel = new ColorPanel(Color.WHITE, d);
+        fieldGridBagConstraints.fill = GridBagConstraints.BOTH;
+        fieldGridBagConstraints.weightx = 3;
+        fieldGridBagConstraints.weighty = 2.5;
+        fieldGridBagConstraints.gridx = 0;
+        fieldGridBagConstraints.gridy = 0;
 
-        // attach panel to contentPane for drawing
-        pane = screen.getContentPane();
-        pane.add(panel);
+        squadGridBagConstraints.fill = GridBagConstraints.BOTH;
+        squadGridBagConstraints.weightx = 3;
+        squadGridBagConstraints.weighty = 1;
+        squadGridBagConstraints.gridx = 0;
+        squadGridBagConstraints.gridy = 1;
 
-        // finish up
-        screen.setVisible(true);
-        // create graphics context to draw with
-        graphics = panel.getGraphics();
-    }
+        drillGridBagConstraints.fill = GridBagConstraints.BOTH;
+        drillGridBagConstraints.weightx = 1;
+        drillGridBagConstraints.weighty = 3.5;
+        drillGridBagConstraints.gridx = 1;
+        drillGridBagConstraints.gridy = 0;
+        drillGridBagConstraints.gridheight = 2;
+        
+        // add to main panle
+        mainPanel.add(fieldPanel, fieldGridBagConstraints);
+        mainPanel.add(squadPanel, squadGridBagConstraints);
+        mainPanel.add(drillPanel, drillGridBagConstraints);
 
-    public void render() {
-        panel.repaint();
+        // JLabel label = new JLabel("Hello World");
+        // frame.getContentPane().add(label);
+ 
+        // Display the window.
+        frame.setContentPane(mainPanel);
+        frame.setVisible(true);
+    } 
+    
+    public static void main(String[] args) {
+        
     }
 }

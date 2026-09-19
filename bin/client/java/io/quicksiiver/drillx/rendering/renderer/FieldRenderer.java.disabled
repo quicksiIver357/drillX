@@ -2,11 +2,8 @@ package client.java.io.quicksiiver.drillx.rendering.renderer;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.lang.reflect.Field;
 
-import main.java.io.quicksiiver.drillx.coordinates.Point;
 import main.java.io.quicksiiver.drillx.field.Drill;
-import main.java.io.quicksiiver.drillx.field.Squad;
 
 public class FieldRenderer {
     // public static void drawSquads(Graphics g, Drill drill) {
