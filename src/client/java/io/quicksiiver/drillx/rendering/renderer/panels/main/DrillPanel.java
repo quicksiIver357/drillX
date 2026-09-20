@@ -16,7 +16,6 @@ public class DrillPanel extends JPanel {
 
     // classifiers
     public static final String TOGGLE_FIELD_VIEW = "toggle_field_view";
-
     // constructors
     public DrillPanel(Color c) {
         setBackground(c); 

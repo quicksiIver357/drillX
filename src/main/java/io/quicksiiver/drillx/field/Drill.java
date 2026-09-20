@@ -11,10 +11,17 @@ public class Drill {
     // variables
     public ArrayList<Squad> squads = new ArrayList<Squad>();
     public int length = 0; // the number of 8s
+    private String name; // needs data validation
+
+    public static ArrayList<String> usedNames = new ArrayList<>();
 
     // CONSTRUCTORS
-    public Drill() {} // create a new drill with no special properties
- 
+    public Drill() { this("default"); } // create a new drill with no special properties
+    public Drill(String name) {
+        // if the name is already taken, add underscores until it works
+        while (!setName(name)) { name += "_"; }
+    }
+
     // LOADING
     public static Drill loadDrill(Gson gson, Path path, boolean printInfo) {
         // load drill
@@ -56,5 +63,21 @@ public class Drill {
     }
     public void save(Gson gson, Path path) { save(gson, path, false); } // default no info printed
 
-    
+    // getters
+    public String getName() { return name; }
+
+    // setters
+    // sets the name, returns true if successful or false if that name is already taken
+    public boolean setName(String name) {
+        if (usedNames.contains(name)) { return false; }
+        // otherwise
+
+        // update array
+        usedNames.remove(this.name);
+        usedNames.add(name);
+
+        // update variable
+        this.name = name;
+        return true;
+    }
 }

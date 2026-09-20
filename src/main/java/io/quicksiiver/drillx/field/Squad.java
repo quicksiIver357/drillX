@@ -39,9 +39,8 @@ public class Squad {
             NUMBER = 1;
         }
     }
-    public Squad(final String key) {
-        this(RotationDirection.NORTH, new Formation(new Point[4], Formation.NO_FILENAME), key, new Point(16, 16));
-    }
+    public Squad(final String key) { this(RotationDirection.NORTH, new Formation(new Point[4], Formation.NO_FILENAME), key, new Point(16, 16)); }
+    public Squad() { this(Squad.NO_KEY); }
      
 
     // GETTERS

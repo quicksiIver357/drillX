@@ -6,18 +6,35 @@ import java.security.InvalidParameterException;
 
 import javax.swing.JPanel;
 
+import main.java.io.quicksiiver.drillx.coordinates.Point;
+import main.java.io.quicksiiver.drillx.field.Drill;
+import main.java.io.quicksiiver.drillx.field.Squad;
+
 public class FieldPanel extends JPanel {
+    // instance variables
     public Color lineColor;
+    public Color squadMemberColor;
+    public Color textColor;
+    public Drill drill;
+    public boolean showNumbers;
+
+    // these need validation, so stay private
     private String drawMode;
 
     // classifiers
     public static final String YARD = "yard";
     public static final String COORDINATE = "coordinate";
 
-    public FieldPanel(Color bgColor, Color lineColor, String drawMode) { 
+    public FieldPanel() { this(new Color(94, 169, 79), Color.WHITE, Color.RED, Color.BLACK, FieldPanel.YARD, null, false); }
+    public FieldPanel(Color bgColor, Color lineColor, Color squadMemberColor, Color textColor, String drawMode, Drill drill, boolean showNumbers) { 
         setBackground(bgColor);
-        this.lineColor = lineColor;
         setDrawMode(drawMode);
+
+        this.lineColor = lineColor;
+        this.squadMemberColor = squadMemberColor;
+        this.textColor = textColor;
+        this.drill = drill;
+        this.showNumbers = showNumbers;
     }
 
     // drawing
@@ -49,6 +66,22 @@ public class FieldPanel extends JPanel {
 
                     g.drawLine(x + dx, (int) ( getHeight() * ( hashScale + 0.02 ) ), x + dx, (int) ( getHeight() * ( hashScale - 0.02 ) ));
                     g.drawLine(x + dx, getHeight() - (int) ( getHeight() * ( hashScale + 0.02 ) ), x + dx, getHeight() - (int) ( getHeight() * ( hashScale - 0.02 ) ));
+                }
+            }
+        }
+
+        // draw the squads
+        if (drill != null) {
+            for (int i = 0; i < drill.squads.size(); i++) {
+                Squad squad = drill.squads.get(i);
+
+                g.setColor(textColor);
+                if (showNumbers) { g.drawString(squad.getKey() + i, (int) squad.getPos().getX(), (int) squad.getPos().getY()); } // numbers
+
+                // squad members
+                g.setColor(squadMemberColor);
+                for (Point p : squad.getFormation().formation) {
+                    g.drawOval(p.getX() * 192 / getWidth(), p.getY() * 88 / getWidth(), getWidth() / 50, getWidth() / 50);
                 }
             }
         }
