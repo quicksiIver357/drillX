@@ -62,6 +62,7 @@ public class Drill {
         }
     }
     public void save(Gson gson, Path path) { save(gson, path, false); } // default no info printed
+    public void save(Gson gson) { save(gson, Path.of("src", "main", "resources", "data", "drills", getName() + ".json")); }
 
     // getters
     public String getName() { return name; }

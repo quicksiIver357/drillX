@@ -81,7 +81,11 @@ public class FieldPanel extends JPanel {
                 // squad members
                 g.setColor(squadMemberColor);
                 for (Point p : squad.getFormation().formation) {
-                    g.drawOval(p.getX() * 192 / getWidth(), p.getY() * 88 / getWidth(), getWidth() / 50, getWidth() / 50);
+                    int rx = (int) ( p.getX() * getWidth() / 192 ); // relative x
+                    int ry = (int) ( p.getY() * getHeight() / 88 ); // relative y
+                    int size = getWidth() / 100; // radius of the circles
+
+                    g.drawOval(rx + size, ry + size, rx - size, ry - size);
                 }
             }
         }

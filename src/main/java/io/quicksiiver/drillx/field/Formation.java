@@ -70,6 +70,11 @@ public class Formation {
 
     // constructors
     public Formation(Point[] formation, String filename) {
+        // automatically handle creating new points if the array is nulls
+        if (formation[0] == null) {
+            for (int i = 0; i < formation.length; i++) { formation[i] = new Point(); }
+        }
+
         this.formation = formation.clone();
         FILENAME = filename;
     }

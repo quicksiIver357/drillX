@@ -10,36 +10,19 @@ public class Point {
     private double y;
 
     // CONSTRUCTORS
-    public Point(double x, double y) {
-        setPos(x, y);
-    }
-    public Point(double[] pos) {
-        setPos(pos);
-    }
-    // copy constructor
-    public Point(Point point) {
-        setPos(point);
-    }
+    public Point(double x, double y) { setPos(x, y); }
+    public Point(double[] pos) { setPos(pos); }
+    public Point() { setPos(0, 0); }
+    public Point(Point point) { setPos(point); } // copy constructor
 
     // GETTERS
-    public double getX() {
-        return this.x;
-    }
-    public double getY() {
-        return this.y;
-    }
-    public double[] getPos() {
-        double[] pos = {getX(), getY()};
-        return pos;
-    }
+    public double getX() { return this.x; }
+    public double getY() { return this.y; }
+    public double[] getPos() { return new double[] {getX(), getY()}; }
 
     // SETTERS
-    public void setX(double x) {
-        this.x = x;
-    }
-    public void setY(double y) {
-        this.y = y;
-    }
+    public void setX(double x) { this.x = x; }
+    public void setY(double y) { this.y = y; }
     public void setPos(double[] pos) {
         // data validation
         if (!validateDoubleArray(pos)) {
@@ -52,17 +35,11 @@ public class Point {
         setX(x);
         setY(y);
     }
-    public void setPos(Point pos) {
-        setPos(pos.getPos());
-    }
+    public void setPos(Point pos) { setPos(pos.getPos()); }
 
     // .equals
-    public boolean equals(Point pos) {
-        return equals(pos.getPos());
-    }
-    public boolean equals(double[] pos) {
-        return Arrays.equals(pos, getPos());
-    }
+    public boolean equals(Point pos) { return equals(pos.getPos()); }
+    public boolean equals(double[] pos) { return Arrays.equals(pos, getPos()); }
 
     // MODIFIERS
     public void applySimpleDirectionalMovement(RotationDirection rd, double ma) { // rd rotationDirection, ma movementAmount
@@ -77,9 +54,7 @@ public class Point {
             this.setX(this.getX() - ma);
         }
     }
-    public void translate(double dx, double dy) {
-        setPos(getX() + dx, getY() + dy);
-    }
+    public void translate(double dx, double dy) { setPos(getX() + dx, getY() + dy); }
     public void translate(double[] d) { // difference d
         if (validateDoubleArray(d)) {
             setX(getX() + d[0]);
@@ -90,13 +65,12 @@ public class Point {
     }
     
 
-    // other
-    public static boolean validateDoubleArray(double[] array) {
+    // helper
+    private static boolean validateDoubleArray(double[] array) {
         if (array.length != 2) {
             return false;
         } else {
             return true;
         }
-    }
-    
+    }   
 }
