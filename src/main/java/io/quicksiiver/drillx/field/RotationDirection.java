@@ -52,4 +52,6 @@ public class RotationDirection {
     public RotationDirection apply(RotationAction rotationAction) {
         return getRotationDirectionFromDegree(this.DEGREE + rotationAction.DEGREE);
     }
+
+    public boolean equals(RotationDirection rd) { return this.DEGREE == rd.DEGREE; }
 }

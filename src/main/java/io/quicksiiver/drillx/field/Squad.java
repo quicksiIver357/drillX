@@ -44,24 +44,12 @@ public class Squad {
      
 
     // GETTERS
-    public RotationDirection getRotationDirection() {
-        return rotationDirection;
-    }
-    public Formation getFormation() {
-        return new Formation(formation, formation.FILENAME);
-    }
-    public String getKey() {
-        return KEY;
-    }
-    public int getNumber() {
-        return NUMBER;
-    }
-    public Point getPos() {
-        return new Point(pos);
-    }
-    public int getNumberOfSquadMembers() {
-        return formation.formation.length;
-    }
+    public RotationDirection getRotationDirection() { return rotationDirection; }
+    public Formation getFormation() { return new Formation(formation, formation.FILENAME); }
+    public String getKey() { return KEY; }
+    public int getNumber() { return NUMBER; }
+    public Point getPos() { return new Point(pos); }
+    public int getNumberOfSquadMembers() { return formation.formation.length; }
 
     // SETTERS
     private void setRotationDirection(RotationDirection rotationDirection) {

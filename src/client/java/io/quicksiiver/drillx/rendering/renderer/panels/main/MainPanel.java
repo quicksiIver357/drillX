@@ -14,10 +14,9 @@ public class MainPanel extends JPanel {
     private DrillPanel drillPanel;
     private SquadPanel squadPanel;
 
-    private Drill drill;
-
     public MainPanel(Theme t, Drill d) {
-        super(new MainLayout(new FieldPanel(t.field, t.fieldLine, t.fieldSquad, t.fieldNumber, FieldPanel.YARD, d, false), new SquadPanel(t.squad), new DrillPanel(t.drill)));
+        // store data
+        super(new MainLayout(new FieldPanel(t.field, t.fieldLine, t.fieldSquad, t.fieldNumber, t.fieldArrow, d), new SquadPanel(t.squad), new DrillPanel(t.drill)));
 
         MainLayout layout = (MainLayout) getLayout();
 
@@ -28,13 +27,12 @@ public class MainPanel extends JPanel {
 
         // not storing stuff, setting up the ui and such
         drillPanel.addToggleFieldViewButtonListener(e -> {
-            // do stuff when the toggleFieldViewButton is pressed
-            if (e.getActionCommand().equals(DrillPanel.TOGGLE_FIELD_VIEW)) {
-                // swap them
-                if (fieldPanel.getDrawMode() == FieldPanel.YARD) { setDrawMode(FieldPanel.COORDINATE); }
-                else { setDrawMode(FieldPanel.YARD); }
-            }
+            if (fieldPanel.getDrawMode() == FieldPanel.YARD) { setDrawMode(FieldPanel.COORDINATE); }
+            else { setDrawMode(FieldPanel.YARD); }
         });
+
+        drillPanel.addToggleSquadNumbersCheckBoxListener(e -> { fieldPanel.showNumbers = !fieldPanel.showNumbers; });
+        drillPanel.addShowArowsCheckBoxListener(e -> { fieldPanel.showArrows = !fieldPanel.showArrows; });
 
         // create constainsts
         GridBagConstraints fieldGridBagConstraints = new GridBagConstraints();
@@ -70,13 +68,10 @@ public class MainPanel extends JPanel {
     public MainPanel() { this(Theme.DEFAULT); }
 
     // setters
-    public void setDrill(Drill d) {
-        this.drill = d;
-        fieldPanel.drill = d;
-    }
+    public void setDrill(Drill d) { fieldPanel.drill = d; }
 
     // getters
-    public Drill getDrill() { return drill; }
+    public Drill getDrill() { return fieldPanel.drill; }
 
     // helpers
     private void setDrawMode(String drawMode) {

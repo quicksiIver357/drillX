@@ -7,17 +7,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import client.java.io.quicksiiver.drillx.rendering.renderer.MainRenderer;
-// import client.java.io.quicksiiver.drillx.rendering.renderer.MainRenderer;
 import main.java.io.quicksiiver.drillx.field.Drill;
 import main.java.io.quicksiiver.drillx.field.Formation;
 import main.java.io.quicksiiver.drillx.field.FormationAnimation;
-import main.java.io.quicksiiver.drillx.field.Squad;
 
 public class Main {
     // filepaths
     public static final Path FORMATION_JSON_DIRECTORY_PATH = Path.of("src", "main", "resources", "data", "formations");
     public static final Path FORMATION_ANIMATION_JSON_DIRECTORY_PATH = Path.of("src", "main", "resources", "data", "formation_animations");
-    public static final Path DRILL_PATH = Path.of("src", "main", "resources", "data", "drills", "test.json");
+    public static final Path DRILL_PATH = Path.of("src", "main", "resources", "data", "drills", "default.json");
 
     // important stuff like Scanner
     public static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -38,7 +36,6 @@ public class Main {
         renderer.setDrill(drill);
         
         // main loop (will be exited if the x button is clicked)
-        MAIN:
         while (true) {
             // render stuff
             renderer.repaint();

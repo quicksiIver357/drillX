@@ -44,15 +44,10 @@ public class Point {
     // MODIFIERS
     public void applySimpleDirectionalMovement(RotationDirection rd, double ma) { // rd rotationDirection, ma movementAmount
         // applies a movement amount to a position using a RotationDirection object to choose which way to go
-        if (rd.equals(RotationDirection.NORTH) || rd.equals(RotationDirection.NORTHEAST) || rd.equals(RotationDirection.NORTHWEST)) {
-            this.setY(this.getY() - ma);
-        } if (rd.equals(RotationDirection.SOUTH) || rd.equals(RotationDirection.SOUTHEAST) || rd.equals(RotationDirection.SOUTHWEST)) {
-            this.setY(this.getY() + ma);
-        } if (rd.equals(RotationDirection.EAST) || rd.equals(RotationDirection.NORTHEAST) || rd.equals(RotationDirection.SOUTHEAST)) {
-            this.setX(this.getX() + ma);
-        } if (rd.equals(RotationDirection.WEST) || rd.equals(RotationDirection.NORTHWEST) || rd.equals(RotationDirection.SOUTHWEST)) {
-            this.setX(this.getX() - ma);
-        }
+        if (rd.equals(RotationDirection.NORTH) || rd.equals(RotationDirection.NORTHEAST) || rd.equals(RotationDirection.NORTHWEST)) { setY(getY() - ma); } 
+        if (rd.equals(RotationDirection.SOUTH) || rd.equals(RotationDirection.SOUTHEAST) || rd.equals(RotationDirection.SOUTHWEST)) { setY(getY() + ma); } 
+        if (rd.equals(RotationDirection.EAST) || rd.equals(RotationDirection.NORTHEAST) || rd.equals(RotationDirection.SOUTHEAST)) { setX(getX() + ma); } 
+        if (rd.equals(RotationDirection.WEST) || rd.equals(RotationDirection.NORTHWEST) || rd.equals(RotationDirection.SOUTHWEST)) { setX(getX() - ma); }
     }
     public void translate(double dx, double dy) { setPos(getX() + dx, getY() + dy); }
     public void translate(double[] d) { // difference d
@@ -64,6 +59,7 @@ public class Point {
         }
     }
     
+    public String toString() { return "(" + getX() + ", " + getY() + ")"; }
 
     // helper
     private static boolean validateDoubleArray(double[] array) {

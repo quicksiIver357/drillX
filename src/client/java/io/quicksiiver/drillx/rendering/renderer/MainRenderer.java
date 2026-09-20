@@ -26,10 +26,6 @@ public class MainRenderer {
     private JMenu fileMenu, fieldMenu;
     private JMenuItem saveMenuItem, newSquadMenuItem;
 
-    // classifiers
-    private static final String SAVE = "save";
-    private static final String NEW_SQUAD = "new_squad";
-
     private MainRenderer() { // hides default constructor
         // Create and set up the window.
         frame = new JFrame("drillX");
