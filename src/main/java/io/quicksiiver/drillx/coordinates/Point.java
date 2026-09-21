@@ -14,6 +14,7 @@ public class Point {
     public Point(double[] pos) { setPos(pos); }
     public Point() { setPos(0, 0); }
     public Point(Point point) { setPos(point); } // copy constructor
+    public Point(java.awt.Point point) { setPos(point.x, point.y); }
 
     // GETTERS
     public double getX() { return this.x; }
@@ -40,6 +41,10 @@ public class Point {
     // .equals
     public boolean equals(Point pos) { return equals(pos.getPos()); }
     public boolean equals(double[] pos) { return Arrays.equals(pos, getPos()); }
+    public boolean near(Point pos, double r) {
+        if (r*r >= Math.pow(this.getX() - pos.getX(), 2) + Math.pow(this.getY() - pos.getY(), 2)) { return true; }
+        else { return false; }
+    }
 
     // MODIFIERS
     public void applySimpleDirectionalMovement(RotationDirection rd, double ma) { // rd rotationDirection, ma movementAmount

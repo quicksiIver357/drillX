@@ -19,34 +19,31 @@ public class MainRenderer {
     public static final MainRenderer INSTANCE = new MainRenderer();
 
     // instance variables
-    private JFrame frame;
-    private MainPanel mainPanel;
+    private JFrame frame = new JFrame("drillX");
+    private MainPanel mainPanel = new MainPanel();
 
-    private JMenuBar mainMenuBar;
-    private JMenu fileMenu, fieldMenu;
-    private JMenuItem saveMenuItem, newSquadMenuItem;
+    private JMenuBar mainMenuBar = new JMenuBar();
+    private JMenu fileMenu = new JMenu("File");
+    private JMenu fieldMenu = new JMenu("Field");
+    private JMenuItem saveMenuItem = new JMenuItem("Save");
+    private JMenuItem newSquadMenuItem = new JMenuItem("New Squad");
 
     private MainRenderer() { // hides default constructor
-        // Create and set up the window.
-        frame = new JFrame("drillX");
+        // set up the window
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new MainWindowListener());
 
-        // create panels
-        mainPanel = new MainPanel();
-
-        // add a menu bar
-        mainMenuBar = new JMenuBar();
-        fileMenu = new JMenu("File");
-        fieldMenu = new JMenu("Field");
-        saveMenuItem = new JMenuItem("Save");
-        newSquadMenuItem = new JMenuItem("New Squad");
-
+        // config menu bar
         saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
         saveMenuItem.addActionListener(e -> { mainPanel.getDrill().save(Main.GSON); });
 
         newSquadMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-        newSquadMenuItem.addActionListener(e -> { mainPanel.getDrill().squads.add(new Squad()); });
+        newSquadMenuItem.addActionListener(e -> { 
+            mainPanel.getDrill().squads.add(new Squad()); 
+
+            // refresh screen
+            repaint();
+        });
 
         fileMenu.add(saveMenuItem);
         fieldMenu.add(newSquadMenuItem);

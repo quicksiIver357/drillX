@@ -4,9 +4,11 @@ import java.awt.GridBagConstraints;
 
 import javax.swing.JPanel;
 
+import client.java.io.quicksiiver.drillx.rendering.renderer.MainRenderer;
 import client.java.io.quicksiiver.drillx.rendering.renderer.layout.MainLayout;
 import client.java.io.quicksiiver.drillx.rendering.renderer.misc.Theme;
 import main.java.io.quicksiiver.drillx.field.Drill;
+import main.java.io.quicksiiver.drillx.field.Squad;
 
 public class MainPanel extends JPanel {
     // instacne variables
@@ -16,23 +18,47 @@ public class MainPanel extends JPanel {
 
     public MainPanel(Theme t, Drill d) {
         // store data
-        super(new MainLayout(new FieldPanel(t.field, t.fieldLine, t.fieldSquad, t.fieldNumber, t.fieldArrow, d), new SquadPanel(t.squad), new DrillPanel(t.drill)));
+        super(new MainLayout(null, null, null));
+
+        this.fieldPanel = new FieldPanel(this, t.field, t.fieldLine, t.fieldSquad, t.fieldNumber, t.fieldArrow, t.fieldSelectedSquad, d);
+        this.squadPanel = new SquadPanel(t.squad);
+        this.drillPanel = new DrillPanel(t.drill);
 
         MainLayout layout = (MainLayout) getLayout();
 
-        fieldPanel = layout.fieldPanel;
-        drillPanel = layout.drillPanel;
-        squadPanel = layout.squadPanel;
+        layout.fieldPanel = this.fieldPanel;
+        layout.squadPanel = this.squadPanel;
+        layout.drillPanel = this.drillPanel;
+
         setDrill(d);
 
         // not storing stuff, setting up the ui and such
+
+        // DRILL PANEL STUFF
+        // --------------------------------------------------------------------------------------------
         drillPanel.addToggleFieldViewButtonListener(e -> {
             if (fieldPanel.getDrawMode() == FieldPanel.YARD) { setDrawMode(FieldPanel.COORDINATE); }
             else { setDrawMode(FieldPanel.YARD); }
+
+            MainRenderer.INSTANCE.repaint();
         });
 
-        drillPanel.addToggleSquadNumbersCheckBoxListener(e -> { fieldPanel.showNumbers = !fieldPanel.showNumbers; });
-        drillPanel.addShowArowsCheckBoxListener(e -> { fieldPanel.showArrows = !fieldPanel.showArrows; });
+        drillPanel.addToggleSquadNumbersCheckBoxListener(e -> { 
+            fieldPanel.showNumbers = !fieldPanel.showNumbers; 
+
+            MainRenderer.INSTANCE.repaint();
+        });
+
+        drillPanel.addShowArowsCheckBoxListener(e -> { 
+            fieldPanel.showArrows = !fieldPanel.showArrows; 
+
+            MainRenderer.INSTANCE.repaint();
+        });
+
+        drillPanel.addDragSquadsCheckBoxListener(e -> { fieldPanel.dragSquads = !fieldPanel.dragSquads; });
+        drillPanel.addSnapToGridCheckBoxListener(e -> { fieldPanel.snapToGrid = !fieldPanel.snapToGrid; });
+        // ------------------------------------------------------------------------------
+
 
         // create constainsts
         GridBagConstraints fieldGridBagConstraints = new GridBagConstraints();
@@ -77,5 +103,10 @@ public class MainPanel extends JPanel {
     private void setDrawMode(String drawMode) {
         fieldPanel.setDrawMode(drawMode);
         drillPanel.setDrawMode(drawMode);
+    }
+
+    public void setSelectedSquad(Squad s) {
+        fieldPanel.setSelectedSquad(s);
+        squadPanel.setSelectedSquad(s);
     }
 }

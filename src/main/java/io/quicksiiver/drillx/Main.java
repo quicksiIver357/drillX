@@ -38,7 +38,7 @@ public class Main {
         // main loop (will be exited if the x button is clicked)
         while (true) {
             // render stuff
-            renderer.repaint();
+            // renderer.repaint();
         }
     } // end of main method
 } // end of class file

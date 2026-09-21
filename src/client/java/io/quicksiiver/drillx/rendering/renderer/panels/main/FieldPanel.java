@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.security.InvalidParameterException;
 
 import javax.swing.JPanel;
@@ -16,21 +19,25 @@ import main.java.io.quicksiiver.drillx.field.Squad;
 
 public class FieldPanel extends JPanel {
     // instance variables
-    public Color lineColor, squadMemberColor, textColor, arrowColor;
+    public Color lineColor, squadMemberColor, textColor, arrowColor, selectedSquadColor;
     public Drill drill;
-    public boolean showNumbers, showArrows;
+    public boolean showNumbers, showArrows, dragSquads, snapToGrid;
+    public int snapToGridSize;
 
-    // these need validation, so stay private
+    // these need validation or should not be changed, so stay private
     private String drawMode;
+    private Squad selectedSquad;
+    private MouseList mouseList = new MouseList();
+    private MainPanel mainPanel;
 
     // classifiers
     public static final String YARD = "yard";
     public static final String COORDINATE = "coordinate";
 
-    public FieldPanel(Color bg, Color line, Color squadMember, Color text, Color arrow, Drill d) { this(bg, line, squadMember, text, arrow, FieldPanel.YARD, d, false, false, Theme.DEFAULT.font); }
-    public FieldPanel(Drill d) { this(Theme.DEFAULT.field, Theme.DEFAULT.fieldLine, Theme.DEFAULT.fieldSquad, Theme.DEFAULT.fieldNumber, Theme.DEFAULT.fieldArrow, d); }
-    public FieldPanel() { this(null); }
-    public FieldPanel(Color bgColor, Color lineColor, Color squadMemberColor, Color textColor, Color arrowColor, String drawMode, Drill drill, boolean showNumbers, boolean showArrows, Font font) { 
+    public FieldPanel(MainPanel mainPanel, Color bg, Color line, Color squadMember, Color text, Color arrow, Color selectedSquadColor, Drill d) { this(mainPanel, bg, line, squadMember, text, arrow, selectedSquadColor, FieldPanel.YARD, d, false, false, false, false, Theme.DEFAULT.font, 4); }
+    public FieldPanel(MainPanel mainPanel, Drill d) { this(mainPanel, Theme.DEFAULT.field, Theme.DEFAULT.fieldLine, Theme.DEFAULT.fieldSquad, Theme.DEFAULT.fieldNumber, Theme.DEFAULT.fieldArrow, Theme.DEFAULT.fieldSelectedSquad, d); }
+    public FieldPanel(MainPanel mainPanel) { this(mainPanel, null); }
+    public FieldPanel(MainPanel mainPanel, Color bgColor, Color lineColor, Color squadMemberColor, Color textColor, Color arrowColor, Color selectedSquadColor, String drawMode, Drill drill, boolean showNumbers, boolean showArrows, boolean dragSquads, boolean snapToGrid, Font font, int snapToGridSize) { 
         setBackground(bgColor);
         setDrawMode(drawMode);
 
@@ -38,9 +45,17 @@ public class FieldPanel extends JPanel {
         this.squadMemberColor = squadMemberColor;
         this.textColor = textColor;
         this.arrowColor = arrowColor;
+        this.selectedSquadColor = selectedSquadColor;
         this.drill = drill;
         this.showNumbers = showNumbers;
         this.showArrows = showArrows;
+        this.snapToGrid = snapToGrid;
+        this.dragSquads = dragSquads;
+        this.mainPanel = mainPanel;
+        this.snapToGridSize = snapToGridSize;
+
+        addMouseListener(mouseList);
+        addMouseMotionListener(mouseList);
     }
 
     // drawing
@@ -81,22 +96,22 @@ public class FieldPanel extends JPanel {
         if (drill != null) {
             for (int i = 0; i < drill.squads.size(); i++) {
                 Squad squad = drill.squads.get(i);
-                int x = (int) ( squad.getPos().getX() * getWidth() / 160 ); // x of squad
-                int y = (int) ( squad.getPos().getY() * getHeight() / ( 640.0 / 9 ) ); // y of squad
+                // calculate x and y that should be drawn on screen
+                Point screenPos = convertToPanelCoords(squad.getPos().getX(), squad.getPos().getY());
+                int x = (int) screenPos.getX();
+                int y = (int) screenPos.getY();
 
-                double tx = squad.getFormation().formation[0].getX() + squad.getFormation().formation[1].getX() + squad.getFormation().formation[2].getX() + squad.getFormation().formation[3].getX(); // total x
-                double ty = squad.getFormation().formation[0].getY() + squad.getFormation().formation[1].getY() + squad.getFormation().formation[2].getY() + squad.getFormation().formation[3].getY(); // total y
-                
-                Point squadCenter = new Point(tx / 4 + x, ty / 4 + y);
+                // calculate the squad center to be drawn on screen
+                Point squadCenter = convertToPanelCoords(squad.getCenterPos());
 
                 if (showNumbers) { 
                     // numbers
                     g2d.setFont(getFont().deriveFont(getWidth() / 500f * getFont().getSize()));
                     g2d.setColor(textColor);
-                    g2d.drawString(squad.getKey() + (i + 1), (int) ( squadCenter.getX() * getWidth() / 160 ), (int) ( squadCenter.getY() * getHeight() * 640.0 / 9));
+                    g2d.drawString(squad.getKey() + (i + 1), (int) (squadCenter.getX()), (int) (squadCenter.getY()));
                 } if (showArrows) { // should NOT be else if
                     Point arrowHead = new Point(squadCenter);
-                    arrowHead.applySimpleDirectionalMovement(squad.getRotationDirection(), getWidth() / 50.0); // TODO: fix this line
+                    arrowHead.applySimpleDirectionalMovement(squad.getRotationDirection(), getWidth() / 50.0);
 
                     // System.out.println("arrowHead: " + arrowHead); // debug
                     // System.out.println("squad pos: " + x + y);
@@ -106,7 +121,9 @@ public class FieldPanel extends JPanel {
                 }
 
                 // squad members
-                g2d.setColor(squadMemberColor);
+                if (selectedSquad == squad) { g2d.setColor(selectedSquadColor); } 
+                else { g2d.setColor(squadMemberColor); }
+                
                 
                 for (Point p : squad.getFormation().formation) {
                     int rx = (int) ( p.getX() * getWidth() / 160 ); // relative x
@@ -128,9 +145,22 @@ public class FieldPanel extends JPanel {
         if (drawMode.equals(YARD) || drawMode.equals(COORDINATE)) { this.drawMode = drawMode; }
         else { throw new InvalidParameterException("drawMode must either be YARDS or COORDINATES."); }
     }
+    public void setSelectedSquad(Squad s) { this.selectedSquad = s; }
 
     // getters
     public String getDrawMode() { return drawMode; }
+
+    // HELPERS
+    private Point convertToPanelCoords(double x, double y) { return new Point(x * getWidth() / 160, y * getHeight() / 640 * 9); }
+    private Point convertToPanelCoords(int[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
+    private Point convertToPanelCoords(double[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
+    private Point convertToPanelCoords(Point pos) { return convertToPanelCoords(pos.getX(), pos.getY()); }
+
+    private Point convertFromPanelCoords(double x, double y) { return new Point(x / getWidth() * 160, y / getHeight() * 640 / 9); }
+    private Point convertFromPanelCoords(int[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
+    private Point convertFromPanelCoords(double[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
+    private Point convertFromPanelCoords(Point pos) { return convertFromPanelCoords(pos.getX(), pos.getY()); }
+
 
     // Source - https://stackoverflow.com/a/27461352
     // Posted by phibao37, modified by community. See post 'Timeline' for change history
@@ -168,4 +198,56 @@ public class FieldPanel extends JPanel {
         g2d.fillPolygon(xpoints, ypoints, 3);
     }
 
+
+    // input handling
+    private class MouseList implements MouseListener, MouseMotionListener {
+        @Override
+        public void mousePressed(MouseEvent e) {
+            Point pos = new Point(e.getPoint()); // converts from java point to my point
+
+            // System.out.println("clicked!");
+            
+            if (drill != null) {
+                for (Squad s : drill.squads) {
+                    // System.out.println("Squad: " + convertToScreenCoords(s.getCenterPos()));
+                    // System.out.println("pos: " + pos);
+
+                    if (convertToPanelCoords(s.getCenterPos()).near(pos, getWidth() / 40)) { // check if they clicked near it
+                        // System.out.println("test");
+                        mainPanel.setSelectedSquad(s);
+                        repaint();
+                        return;
+                    }
+                }
+
+                mainPanel.setSelectedSquad(null);
+                repaint();
+            }
+        }
+        
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            if (dragSquads && selectedSquad != null) { 
+                Point fieldCoords = convertFromPanelCoords(new Point(e.getPoint()));
+
+                if (snapToGrid) { selectedSquad.setCenterPos(new Point(snapToGridSize * Math.round(fieldCoords.getX() / snapToGridSize), snapToGridSize * Math.round(fieldCoords.getY() / snapToGridSize))); } 
+                else { selectedSquad.setCenterPos(fieldCoords); }
+
+                repaint();
+            }
+        }
+
+
+        // satisfy implementations
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+        @Override
+        public void mouseExited(MouseEvent e) {}
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+        @Override
+        public void mouseClicked(MouseEvent e) {}
+        @Override
+        public void mouseMoved(MouseEvent e) {}
+    }
 }

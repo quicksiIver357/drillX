@@ -27,12 +27,114 @@
         "FILENAME": "horizontal_top.json"
       },
       "pos": {
-        "x": 16.0,
-        "y": 16.0
+        "x": 68.0,
+        "y": 32.0
       },
       "movements": [],
       "KEY": "",
       "NUMBER": 1
+    },
+    {
+      "rotationDirection": {
+        "KEY": "NORTH",
+        "DEGREE": 0
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 0.0
+          },
+          {
+            "x": 3.0,
+            "y": 0.0
+          },
+          {
+            "x": 5.0,
+            "y": 0.0
+          },
+          {
+            "x": 7.0,
+            "y": 0.0
+          }
+        ],
+        "FILENAME": "horizontal_top.json"
+      },
+      "pos": {
+        "x": 76.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 2
+    },
+    {
+      "rotationDirection": {
+        "KEY": "NORTH",
+        "DEGREE": 0
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 0.0
+          },
+          {
+            "x": 3.0,
+            "y": 0.0
+          },
+          {
+            "x": 5.0,
+            "y": 0.0
+          },
+          {
+            "x": 7.0,
+            "y": 0.0
+          }
+        ],
+        "FILENAME": "horizontal_top.json"
+      },
+      "pos": {
+        "x": 84.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 3
+    },
+    {
+      "rotationDirection": {
+        "KEY": "NORTH",
+        "DEGREE": 0
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 0.0
+          },
+          {
+            "x": 3.0,
+            "y": 0.0
+          },
+          {
+            "x": 5.0,
+            "y": 0.0
+          },
+          {
+            "x": 7.0,
+            "y": 0.0
+          }
+        ],
+        "FILENAME": "horizontal_top.json"
+      },
+      "pos": {
+        "x": 60.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 4
     }
   ],
   "length": 0,

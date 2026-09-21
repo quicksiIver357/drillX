@@ -41,7 +41,7 @@ public class Squad {
     }
     public Squad(final String key) { this(RotationDirection.NORTH, Formation.HORIZONTAL_TOP, key, new Point(16, 16)); }
     public Squad() { this(Squad.NO_KEY); }
-     
+    public Squad(Squad s) { this(s.getRotationDirection(), s.getFormation(), s.getKey(), s.getPos()); }
 
     // GETTERS
     public RotationDirection getRotationDirection() { return rotationDirection; }
@@ -50,6 +50,17 @@ public class Squad {
     public int getNumber() { return NUMBER; }
     public Point getPos() { return new Point(pos); }
     public int getNumberOfSquadMembers() { return formation.formation.length; }
+    public Point getCenterPos() {
+        double tx = 0;
+        double ty = 0;
+        
+        for (int i = 0; i < formation.formation.length; i++) {
+            tx += formation.formation[i].getX();
+            ty += formation.formation[i].getY();
+        }
+
+        return new Point(getPos().getX() + tx / formation.formation.length, getPos().getY() + ty / formation.formation.length);
+    }
 
     // SETTERS
     private void setRotationDirection(RotationDirection rotationDirection) {
@@ -63,7 +74,14 @@ public class Squad {
             throw new IllegalArgumentException("SquadFormation squadMemberPositions must be of length " + formation.formation.length);
         }
     }
-    
+    public void setPos(Point pos) { this.pos = new Point(pos); }
+    public void setCenterPos(Point pos) {
+        Point centerPos = getCenterPos();
+        Point topLeftPos = getPos();
+
+        Point offset = new Point(centerPos.getX() - topLeftPos.getX(), centerPos.getY() - topLeftPos.getY());
+        setPos(new Point(pos.getX() - offset.getX(), pos.getY() - offset.getY()));
+    }
 
     // functions
     // applies a movement
@@ -74,6 +92,8 @@ public class Squad {
             translateSquad(rotationDirection, 1);
         }
     }
+    
+    // HELPERS
     // translates the squad member positions
     private void translateSquadMemberPositions(Point[] tranlationPoints) {
         // data validation
