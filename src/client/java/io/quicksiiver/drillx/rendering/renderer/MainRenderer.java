@@ -12,7 +12,10 @@ import javax.swing.KeyStroke;
 import client.java.io.quicksiiver.drillx.rendering.renderer.input.MainWindowListener;
 import client.java.io.quicksiiver.drillx.rendering.renderer.panels.main.MainPanel;
 import main.java.io.quicksiiver.drillx.Main;
+import main.java.io.quicksiiver.drillx.coordinates.Point;
 import main.java.io.quicksiiver.drillx.field.Drill;
+import main.java.io.quicksiiver.drillx.field.Formation;
+import main.java.io.quicksiiver.drillx.field.RotationDirection;
 import main.java.io.quicksiiver.drillx.field.Squad;
 
 public class MainRenderer {
@@ -27,6 +30,10 @@ public class MainRenderer {
     private JMenu fieldMenu = new JMenu("Field");
     private JMenuItem saveMenuItem = new JMenuItem("Save");
     private JMenuItem newSquadMenuItem = new JMenuItem("New Squad");
+    private JMenuItem deleteSquadMenuItem = new JMenuItem("Delete Selected Squad");
+
+    private RotationDirection defaultRotationDirection = RotationDirection.NORTH;
+    private Formation defaultFormation = Formation.HORIZONTAL_BOTTOM;
 
     private MainRenderer() { // hides default constructor
         // set up the window
@@ -39,14 +46,25 @@ public class MainRenderer {
 
         newSquadMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         newSquadMenuItem.addActionListener(e -> { 
-            mainPanel.getDrill().squads.add(new Squad()); 
+            mainPanel.getDrill().squads.add(new Squad(defaultRotationDirection, defaultFormation, Squad.NO_KEY, new Point(16, 16)));
 
             // refresh screen
             repaint();
         });
 
+        deleteSquadMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
+        deleteSquadMenuItem.addActionListener(e -> { 
+            mainPanel.deleteSelectedSquad(); 
+            repaint();
+        });
+
+        // actionListeners for mainPanel (drillPanel)
+        mainPanel.addDefaultFormationComboBoxListener(e -> { defaultFormation = mainPanel.getSelection(Formation.HORIZONTAL_BOTTOM, e); });
+        mainPanel.addDefaultRotationDirectionComboBoxListener(e -> { defaultRotationDirection = mainPanel.getSelection(RotationDirection.EAST, e); });
+
         fileMenu.add(saveMenuItem);
         fieldMenu.add(newSquadMenuItem);
+        fieldMenu.add(deleteSquadMenuItem);
         mainMenuBar.add(fileMenu);
         mainMenuBar.add(fieldMenu);
 

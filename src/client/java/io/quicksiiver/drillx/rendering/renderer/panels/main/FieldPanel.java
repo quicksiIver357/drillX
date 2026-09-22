@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import client.java.io.quicksiiver.drillx.rendering.renderer.misc.Theme;
 import main.java.io.quicksiiver.drillx.coordinates.Point;
 import main.java.io.quicksiiver.drillx.field.Drill;
+import main.java.io.quicksiiver.drillx.field.Formation;
+import main.java.io.quicksiiver.drillx.field.RotationDirection;
 import main.java.io.quicksiiver.drillx.field.Squad;
 
 public class FieldPanel extends JPanel {
@@ -95,6 +97,7 @@ public class FieldPanel extends JPanel {
         // draw the squads
         if (drill != null) {
             for (int i = 0; i < drill.squads.size(); i++) {
+                // CALCULATIONS
                 Squad squad = drill.squads.get(i);
                 // calculate x and y that should be drawn on screen
                 Point screenPos = convertToPanelCoords(squad.getPos().getX(), squad.getPos().getY());
@@ -103,6 +106,24 @@ public class FieldPanel extends JPanel {
 
                 // calculate the squad center to be drawn on screen
                 Point squadCenter = convertToPanelCoords(squad.getCenterPos());
+
+                // squad members
+                if (selectedSquad == squad) { g2d.setColor(selectedSquadColor); } 
+                else { g2d.setColor(squadMemberColor); }
+                
+                
+                // DRAWING
+                for (Point p : squad.getFormation().formation) {
+                    int rx = (int) ( p.getX() * getWidth() / 160 ); // relative x
+                    int ry = (int) ( p.getY() * getHeight() / ( 640.0 / 9 ) ); // relative y
+                    int size = getWidth() / 200; // radius of the circles
+
+                    // System.out.println("rx: " + rx); // debug
+                    // System.out.println("ry: " + ry);
+                    // System.out.println("Size: " + size);
+
+                    g2d.fillOval(x + rx - size, y + ry - size, size * 2, size * 2);
+                }
 
                 if (showNumbers) { 
                     // numbers
@@ -119,23 +140,6 @@ public class FieldPanel extends JPanel {
                     g2d.setColor(arrowColor);
                     drawArrowLine(g2d, (int) squadCenter.getX(), (int) squadCenter.getY(), (int) arrowHead.getX(), (int) arrowHead.getY(), getWidth() / 100, getWidth() / 150);
                 }
-
-                // squad members
-                if (selectedSquad == squad) { g2d.setColor(selectedSquadColor); } 
-                else { g2d.setColor(squadMemberColor); }
-                
-                
-                for (Point p : squad.getFormation().formation) {
-                    int rx = (int) ( p.getX() * getWidth() / 160 ); // relative x
-                    int ry = (int) ( p.getY() * getHeight() / ( 640.0 / 9 ) ); // relative y
-                    int size = getWidth() / 200; // radius of the circles
-
-                    // System.out.println("rx: " + rx); // debug
-                    // System.out.println("ry: " + ry);
-                    // System.out.println("Size: " + size);
-
-                    g2d.fillOval(x + rx - size, y + ry - size, size * 2, size * 2);
-                }
             }
         }
     }
@@ -146,19 +150,23 @@ public class FieldPanel extends JPanel {
         else { throw new InvalidParameterException("drawMode must either be YARDS or COORDINATES."); }
     }
     public void setSelectedSquad(Squad s) { this.selectedSquad = s; }
+    // sets things of the selected Squad
+    public void setRotationDirection(RotationDirection rd) { selectedSquad.setRotationDirection(rd); }
+    public void setFormation(Formation f) { selectedSquad.setFormation(f); }
 
     // getters
     public String getDrawMode() { return drawMode; }
+    public Squad getSelectedSquad() { return selectedSquad; }
 
     // HELPERS
     private Point convertToPanelCoords(double x, double y) { return new Point(x * getWidth() / 160, y * getHeight() / 640 * 9); }
-    private Point convertToPanelCoords(int[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
-    private Point convertToPanelCoords(double[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
+    // private Point convertToPanelCoords(int[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
+    // private Point convertToPanelCoords(double[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
     private Point convertToPanelCoords(Point pos) { return convertToPanelCoords(pos.getX(), pos.getY()); }
 
     private Point convertFromPanelCoords(double x, double y) { return new Point(x / getWidth() * 160, y / getHeight() * 640 / 9); }
-    private Point convertFromPanelCoords(int[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
-    private Point convertFromPanelCoords(double[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
+    // private Point convertFromPanelCoords(int[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
+    // private Point convertFromPanelCoords(double[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
     private Point convertFromPanelCoords(Point pos) { return convertFromPanelCoords(pos.getX(), pos.getY()); }
 
 
@@ -230,8 +238,23 @@ public class FieldPanel extends JPanel {
             if (dragSquads && selectedSquad != null) { 
                 Point fieldCoords = convertFromPanelCoords(new Point(e.getPoint()));
 
-                if (snapToGrid) { selectedSquad.setCenterPos(new Point(snapToGridSize * Math.round(fieldCoords.getX() / snapToGridSize), snapToGridSize * Math.round(fieldCoords.getY() / snapToGridSize))); } 
+                if (snapToGrid) { 
+                    selectedSquad.setCenterPos(new Point(snapToGridSize * Math.round(fieldCoords.getX() / snapToGridSize), snapToGridSize * Math.round(fieldCoords.getY() / snapToGridSize))); 
+                } 
                 else { selectedSquad.setCenterPos(fieldCoords); }
+
+                // readjust if needed
+                // x
+                if (selectedSquad.getPos().getX() < 0) { selectedSquad.setX(0); }
+                else if (convertToPanelCoords(selectedSquad.getBottomRightPos()).getX() > getWidth()) { 
+                    selectedSquad.setBottomRightPos(new Point(convertFromPanelCoords(getWidth(), 0).getX(), selectedSquad.getBottomRightPos().getY())); 
+                }
+
+                // y
+                if (selectedSquad.getPos().getY() < 0) { selectedSquad.setY(0); }
+                else if (convertToPanelCoords(selectedSquad.getBottomRightPos()).getY() > getHeight()) { 
+                    selectedSquad.setBottomRightPos(new Point(selectedSquad.getBottomRightPos().getX(), convertFromPanelCoords(0, getHeight()).getY())); 
+                }
 
                 repaint();
             }

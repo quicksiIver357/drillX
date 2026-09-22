@@ -1,13 +1,17 @@
 package client.java.io.quicksiiver.drillx.rendering.renderer.panels.main;
 
-import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import client.java.io.quicksiiver.drillx.rendering.renderer.MainRenderer;
 import client.java.io.quicksiiver.drillx.rendering.renderer.layout.MainLayout;
 import client.java.io.quicksiiver.drillx.rendering.renderer.misc.Theme;
 import main.java.io.quicksiiver.drillx.field.Drill;
+import main.java.io.quicksiiver.drillx.field.Formation;
+import main.java.io.quicksiiver.drillx.field.RotationDirection;
 import main.java.io.quicksiiver.drillx.field.Squad;
 
 public class MainPanel extends JPanel {
@@ -34,60 +38,41 @@ public class MainPanel extends JPanel {
 
         // not storing stuff, setting up the ui and such
 
-        // DRILL PANEL STUFF
+        // ACTION LISTENER STUFF
         // --------------------------------------------------------------------------------------------
         drillPanel.addToggleFieldViewButtonListener(e -> {
             if (fieldPanel.getDrawMode() == FieldPanel.YARD) { setDrawMode(FieldPanel.COORDINATE); }
             else { setDrawMode(FieldPanel.YARD); }
 
-            MainRenderer.INSTANCE.repaint();
+            repaint();
         });
-
         drillPanel.addToggleSquadNumbersCheckBoxListener(e -> { 
             fieldPanel.showNumbers = !fieldPanel.showNumbers; 
 
-            MainRenderer.INSTANCE.repaint();
+            repaint();
         });
-
         drillPanel.addShowArowsCheckBoxListener(e -> { 
             fieldPanel.showArrows = !fieldPanel.showArrows; 
 
-            MainRenderer.INSTANCE.repaint();
+            repaint();
         });
-
         drillPanel.addDragSquadsCheckBoxListener(e -> { fieldPanel.dragSquads = !fieldPanel.dragSquads; });
         drillPanel.addSnapToGridCheckBoxListener(e -> { fieldPanel.snapToGrid = !fieldPanel.snapToGrid; });
+
+        squadPanel.addRotationDirectionSelectorListener(e -> {
+            fieldPanel.setRotationDirection(getSelection(RotationDirection.EAST, e)); // apply it
+            repaint();
+        });
+        squadPanel.addFormationSelectorListener(e -> { 
+            // you can pass in any formation just for the type
+            fieldPanel.setFormation(getSelection(Formation.LEFT_SLANT, e)); 
+            repaint();
+        });
         // ------------------------------------------------------------------------------
 
-
-        // create constainsts
-        GridBagConstraints fieldGridBagConstraints = new GridBagConstraints();
-        GridBagConstraints squadGridBagConstraints = new GridBagConstraints();
-        GridBagConstraints drillGridBagConstraints = new GridBagConstraints();
-
-        fieldGridBagConstraints.fill = GridBagConstraints.BOTH;
-        fieldGridBagConstraints.weightx = 3;
-        fieldGridBagConstraints.weighty = 2.5;
-        fieldGridBagConstraints.gridx = 0;
-        fieldGridBagConstraints.gridy = 0;
-
-        squadGridBagConstraints.fill = GridBagConstraints.BOTH;
-        squadGridBagConstraints.weightx = 3;
-        squadGridBagConstraints.weighty = 1;
-        squadGridBagConstraints.gridx = 0;
-        squadGridBagConstraints.gridy = 1;
-
-        drillGridBagConstraints.fill = GridBagConstraints.BOTH;
-        drillGridBagConstraints.weightx = 1;
-        drillGridBagConstraints.weighty = 3.5;
-        drillGridBagConstraints.gridx = 1;
-        drillGridBagConstraints.gridy = 0;
-        drillGridBagConstraints.gridheight = 2;
-        
-        // add to self for drawing
-        add(fieldPanel, fieldGridBagConstraints);
-        add(squadPanel, squadGridBagConstraints);
-        add(drillPanel, drillGridBagConstraints);
+        add(fieldPanel);
+        add(squadPanel);
+        add(drillPanel);
     }
     public MainPanel(Theme t) { this(t, null); }
     public MainPanel(Drill d) { this(Theme.DEFAULT, d); }
@@ -95,6 +80,12 @@ public class MainPanel extends JPanel {
 
     // setters
     public void setDrill(Drill d) { fieldPanel.drill = d; }
+    public void deleteSelectedSquad() {
+        fieldPanel.drill.squads.remove(fieldPanel.getSelectedSquad()); // remove it from drill
+        setSelectedSquad(null); // remove it from selection
+    }
+    public void addDefaultFormationComboBoxListener(ActionListener l) { drillPanel.addDefaultFormationComboBoxListener(l); }
+    public void addDefaultRotationDirectionComboBoxListener(ActionListener l) { drillPanel.addDefaultRotationDirectionComboBoxListener(l); }
 
     // getters
     public Drill getDrill() { return fieldPanel.drill; }
@@ -104,9 +95,20 @@ public class MainPanel extends JPanel {
         fieldPanel.setDrawMode(drawMode);
         drillPanel.setDrawMode(drawMode);
     }
+    public <T> T getSelection(T type, ActionEvent e) {
+        // get the selection
+        @SuppressWarnings("unchecked") // stop yellow underline
+        JComboBox<T> formationSelector = (JComboBox<T>) e.getSource();
+        @SuppressWarnings("unchecked") // stop yellow underline
+        T selection = (T) formationSelector.getSelectedItem();
+
+        // return it
+        return selection;
+    }
 
     public void setSelectedSquad(Squad s) {
         fieldPanel.setSelectedSquad(s);
         squadPanel.setSelectedSquad(s);
     }
+
 }

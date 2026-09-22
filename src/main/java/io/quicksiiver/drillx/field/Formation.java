@@ -61,6 +61,8 @@ public class Formation {
         new Point(1, 7)
     }, "right_slant.json");
 
+    public static final Formation[] ALL_FORMATIONS = {HORIZONTAL_TOP, HORIZONTAL_BOTTOM, VERTICAL_LEFT, VERTICAL_RIGHT, LEFT_SLANT, RIGHT_SLANT};
+
 
 
     // // transitions
@@ -130,10 +132,15 @@ public class Formation {
     }
 
     // misc
-    public boolean equals(Formation otherFormation) {
+    public boolean equals(Object obj) {
+        if (this == obj) { return true; } // same reference
+        if (!(obj instanceof Formation)) { return false; } // not same type
+        // otherwise continue
+        Formation f = (Formation) obj;
+
         // make sure all of the points are the same
         for (int i = 0; i < formation.length; i++) {
-            if (!formation[i].equals(otherFormation.formation[i])) { return false; } // if they dont match
+            if (!formation[i].equals(f.formation[i])) { return false; } // if they dont match
         }
 
         return true; // if they all match return true
@@ -146,5 +153,18 @@ public class Formation {
         }
 
         System.out.println("Filename: " + FILENAME);
+    }
+    public String toString() {
+        // convert to char[] without the .json at the end
+        String trimmedFilename = FILENAME.substring(0, FILENAME.length() - 5);
+        char[] charArray = trimmedFilename.toCharArray();
+
+        for (int i = 0; i < charArray.length; i++) {
+            // replace underscores with spaces
+            if (charArray[i] == '_') { charArray[i] = ' '; }
+        }
+
+        // convert back to String and return
+        return new String(charArray); // wowza this is smth new i learned
     }
 }

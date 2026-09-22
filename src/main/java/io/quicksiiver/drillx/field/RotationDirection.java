@@ -53,5 +53,13 @@ public class RotationDirection {
         return getRotationDirectionFromDegree(this.DEGREE + rotationAction.DEGREE);
     }
 
-    public boolean equals(RotationDirection rd) { return this.DEGREE == rd.DEGREE; }
+
+    public boolean equals(Object obj) { 
+        if (this == obj) { return true; } // same reference
+        if (!(obj instanceof RotationDirection)) { return false; } // not same type
+
+        RotationDirection rd = (RotationDirection) obj; // convert to RotationDirection and check if they are equal
+        return this.DEGREE == rd.DEGREE; 
+    }
+    public String toString() { return this.KEY.toLowerCase(); }
 }

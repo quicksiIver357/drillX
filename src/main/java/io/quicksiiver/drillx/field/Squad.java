@@ -61,15 +61,24 @@ public class Squad {
 
         return new Point(getPos().getX() + tx / formation.formation.length, getPos().getY() + ty / formation.formation.length);
     }
+    public Point getBottomRightPos() {
+        // offset from getPos()
+        double x = 8; 
+        double y = 8;
+
+        // change it if required
+        if (Math.max(Math.max(formation.formation[0].getX(), formation.formation[1].getX()), Math.max(formation.formation[2].getX(), formation.formation[3].getX())) == 0) { x = 0; }
+        if (Math.max(Math.max(formation.formation[0].getY(), formation.formation[1].getY()), Math.max(formation.formation[2].getY(), formation.formation[3].getY())) == 0) { y = 0; }
+
+        return new Point(getPos().getX() + x, getPos().getY() + y);
+    }
 
     // SETTERS
-    private void setRotationDirection(RotationDirection rotationDirection) {
-        this.rotationDirection = rotationDirection;
-    }
-    private void setSquadMemberPositions(Formation squadMemberPositions) {
+    public void setRotationDirection(RotationDirection rotationDirection) { this.rotationDirection = rotationDirection; }
+    public void setFormation(Formation f) {
         // data validation
-        if (squadMemberPositions.formation.length == getNumberOfSquadMembers()) {
-            formation.formation = squadMemberPositions.formation;
+        if (f.formation.length == getNumberOfSquadMembers()) {
+            formation.formation = f.formation;
         } else {
             throw new IllegalArgumentException("SquadFormation squadMemberPositions must be of length " + formation.formation.length);
         }
@@ -82,6 +91,9 @@ public class Squad {
         Point offset = new Point(centerPos.getX() - topLeftPos.getX(), centerPos.getY() - topLeftPos.getY());
         setPos(new Point(pos.getX() - offset.getX(), pos.getY() - offset.getY()));
     }
+    public void setX(double x) { this.pos.setX(x); }
+    public void setY(double y) { this.pos.setY(y); }
+    public void setBottomRightPos(Point pos) { setPos(new Point(pos.getX() - getBottomRightPos().getX() + getPos().getX(), pos.getY() - getBottomRightPos().getY() + getPos().getY())); }
 
     // functions
     // applies a movement
@@ -108,7 +120,7 @@ public class Squad {
             newPositions.formation[i] = new Point(formation.formation[i].getX() + tranlationPoints[i].getX(), formation.formation[i].getY() + tranlationPoints[i].getY());
         }
 
-        setSquadMemberPositions(newPositions); // apply changes
+        setFormation(newPositions); // apply changes
     }
     // validate a point array by comparing its length agains the number of squad members
     private boolean validatePointArray(Point[] points) {
@@ -120,5 +132,16 @@ public class Squad {
         if (Arrays.stream(RotationDirection.SOUTH_DIRECTIONS).anyMatch(rotationDirection::equals)) { pos.translate(0, movementAmount); }
         if (Arrays.stream(RotationDirection.EAST_DIRECTIONS).anyMatch(rotationDirection::equals)) { pos.translate(movementAmount, 0); }
         if (Arrays.stream(RotationDirection.WEST_DIRECTIONS).anyMatch(rotationDirection::equals)) { pos.translate(-movementAmount, 0); }
+    }
+
+    // misc
+    public boolean equals(Object obj) {
+        if (this == obj) { return true; } // check reference
+        if (!(obj instanceof Squad)) { return false; } // check instanceof
+
+        // otherwise typecast and check fields
+        Squad s = (Squad) obj;
+        if (KEY.equals(s.KEY) && NUMBER == s.NUMBER) { return true; }
+        else { return false; }
     }
 }
