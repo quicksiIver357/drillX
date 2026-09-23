@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import client.java.io.quicksiiver.drillx.rendering.renderer.MainRenderer;
 import client.java.io.quicksiiver.drillx.rendering.renderer.layout.MainLayout;
 import client.java.io.quicksiiver.drillx.rendering.renderer.misc.Theme;
 import main.java.io.quicksiiver.drillx.field.Drill;
@@ -81,11 +80,12 @@ public class MainPanel extends JPanel {
     // setters
     public void setDrill(Drill d) { fieldPanel.drill = d; }
     public void deleteSelectedSquad() {
-        fieldPanel.drill.squads.remove(fieldPanel.getSelectedSquad()); // remove it from drill
+        fieldPanel.drill.removeSquad(fieldPanel.getSelectedSquad()); // remove it from drill
         setSelectedSquad(null); // remove it from selection
     }
     public void addDefaultFormationComboBoxListener(ActionListener l) { drillPanel.addDefaultFormationComboBoxListener(l); }
     public void addDefaultRotationDirectionComboBoxListener(ActionListener l) { drillPanel.addDefaultRotationDirectionComboBoxListener(l); }
+    public void addSquad(Squad s) { fieldPanel.drill.addSquad(s); }
 
     // getters
     public Drill getDrill() { return fieldPanel.drill; }

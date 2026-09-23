@@ -96,9 +96,9 @@ public class FieldPanel extends JPanel {
 
         // draw the squads
         if (drill != null) {
-            for (int i = 0; i < drill.squads.size(); i++) {
+            for (int i = 0; i < drill.getSquads().size(); i++) {
                 // CALCULATIONS
-                Squad squad = drill.squads.get(i);
+                Squad squad = drill.getSquads().get(i);
                 // calculate x and y that should be drawn on screen
                 Point screenPos = convertToPanelCoords(squad.getPos().getX(), squad.getPos().getY());
                 int x = (int) screenPos.getX();
@@ -216,7 +216,7 @@ public class FieldPanel extends JPanel {
             // System.out.println("clicked!");
             
             if (drill != null) {
-                for (Squad s : drill.squads) {
+                for (Squad s : drill.getSquads()) {
                     // System.out.println("Squad: " + convertToScreenCoords(s.getCenterPos()));
                     // System.out.println("pos: " + pos);
 

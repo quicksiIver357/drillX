@@ -7,16 +7,29 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
+/**
+ * This is a class used to save marching band drills.
+ * It has no drawing functionality, that is handled in FieldPanel.java and DrilPanel.java
+ * However, it does have functionality for saving and loading them to files.
+ */
 public class Drill {
-    // variables
-    public ArrayList<Squad> squads = new ArrayList<Squad>();
-    public int length = 0; // the number of 8s
-    private String name; // needs data validation
+    // instance variables
+    private ArrayList<Squad> squads = new ArrayList<Squad>();
+    private int length = 0; // the number of 8s
+    private String name;
 
+    // TODO: Add implementation for saving of usedNames.
+    /** This is a list of all of the currently taken filenames for drills. Saving is unimplemented. */
     public static ArrayList<String> usedNames = new ArrayList<>();
 
     // CONSTRUCTORS
-    public Drill() { this("default"); } // create a new drill with no special properties
+    /** Creates a new drill with the name default. */
+    public Drill() { this("default"); }
+    /** 
+     * Creates a new drill.
+     * @param name the name of the drill, it will be saved to name.json
+     * If that name is already taken, it will continue to add underscores until it works.
+     */
     public Drill(String name) {
         // if the name is already taken, add underscores until it works
         while (!setName(name)) { name += "_"; }
@@ -66,6 +79,8 @@ public class Drill {
 
     // getters
     public String getName() { return name; }
+    public ArrayList<Squad> getSquads() { return squads; }
+    public int getLength() { return length; }
 
     // setters
     // sets the name, returns true if successful or false if that name is already taken
@@ -81,4 +96,10 @@ public class Drill {
         this.name = name;
         return true;
     }
+    public void setSquads(ArrayList<Squad> squads) { this.squads = squads; }
+    public void setLength(int length) { this.length = length; }
+
+    // modifiers
+    public void addSquad(Squad squad) { squads.add(squad); }
+    public void removeSquad(Squad squad) { squads.remove(squad); }
 }

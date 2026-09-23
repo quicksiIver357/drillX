@@ -23,7 +23,7 @@ public class DrillPanel extends JPanel {
     private JButton toggleFieldViewButton = new JButton(drawMode); // starts off as yard
     private JComboBox<Formation> defaultFormationComboBox = new JComboBox<>(Formation.ALL_FORMATIONS);
     private JComboBox<RotationDirection> defaultRotationDirectionComboBox = new JComboBox<>(RotationDirection.ROTATION_DIRECTIONS);
-    private JCheckBox toggleSquadNumbersCheckBox = new JCheckBox("Squad Numbers");
+    private JCheckBox toggleSquadNumbersCheckBox = new JCheckBox("Show Numbers");
     private JCheckBox showArrowsCheckBox = new JCheckBox("Show Arrows");
     private JCheckBox dragSquadsCheckBox = new JCheckBox("Drag Squads");
     private JCheckBox snapToGridCheckBox = new JCheckBox("Snap to Grid");
@@ -78,32 +78,32 @@ public class DrillPanel extends JPanel {
         toggleSquadNumbersCheckBoxConstraints.gridy = 1;
         toggleSquadNumbersCheckBoxConstraints.fill = GridBagConstraints.BOTH;
 
-        showArrowsCheckBoxConstraints.gridx = 0;
-        showArrowsCheckBoxConstraints.gridy = 2;
+        showArrowsCheckBoxConstraints.gridx = 1;
+        showArrowsCheckBoxConstraints.gridy = 1;
         showArrowsCheckBoxConstraints.fill = GridBagConstraints.BOTH;
 
         dragSquadsCheckBoxConstraints.gridx = 0;
-        dragSquadsCheckBoxConstraints.gridy = 3;
+        dragSquadsCheckBoxConstraints.gridy = 2;
         dragSquadsCheckBoxConstraints.fill = GridBagConstraints.BOTH;
 
-        snapToGridCheckBoxConstraints.gridx = 0;
-        snapToGridCheckBoxConstraints.gridy = 4;
+        snapToGridCheckBoxConstraints.gridx = 1;
+        snapToGridCheckBoxConstraints.gridy = 2;
         snapToGridCheckBoxConstraints.fill = GridBagConstraints.BOTH;
 
         defaultFormationComboBoxLabelConstraints.gridx = 0;
-        defaultFormationComboBoxLabelConstraints.gridy = 5;
+        defaultFormationComboBoxLabelConstraints.gridy = 3;
         defaultFormationComboBoxLabelConstraints.fill = GridBagConstraints.BOTH;
 
         defaultFormationComboBoxConstraints.gridx = 1;
-        defaultFormationComboBoxConstraints.gridy = 5;
+        defaultFormationComboBoxConstraints.gridy = 3;
         defaultFormationComboBoxConstraints.fill = GridBagConstraints.BOTH;
 
         defaultRotationDirectionComboBoxLabelConstraints.gridx = 0;
-        defaultRotationDirectionComboBoxLabelConstraints.gridy = 6;
+        defaultRotationDirectionComboBoxLabelConstraints.gridy = 4;
         defaultRotationDirectionComboBoxLabelConstraints.fill = GridBagConstraints.BOTH;
 
         defaultRotationDirectionComboBoxConstraints.gridx = 1;
-        defaultRotationDirectionComboBoxConstraints.gridy = 6;
+        defaultRotationDirectionComboBoxConstraints.gridy = 4;
         defaultRotationDirectionComboBoxConstraints.fill = GridBagConstraints.BOTH;
         // ---------------------------------------------------------------------------
 

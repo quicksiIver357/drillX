@@ -41,10 +41,10 @@ public class Formation {
     }, "vertical_left.json");
 
     public static final Formation VERTICAL_RIGHT = new Formation(new Point[] {
-        new Point(0, 1), 
-        new Point(0, 3), 
-        new Point(0, 5), 
-        new Point(0, 7)
+        new Point(8, 1), 
+        new Point(8, 3), 
+        new Point(8, 5), 
+        new Point(8, 7)
     }, "vertical_right.json");
 
     public static final Formation LEFT_SLANT = new Formation(new Point[] {
@@ -145,6 +145,7 @@ public class Formation {
 
         return true; // if they all match return true
     }
+    public Formation copy() { return new Formation(this, FILENAME); }
 
     // debug
     public void printInfo() {

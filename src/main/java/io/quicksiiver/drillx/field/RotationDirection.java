@@ -62,4 +62,5 @@ public class RotationDirection {
         return this.DEGREE == rd.DEGREE; 
     }
     public String toString() { return this.KEY.toLowerCase(); }
+    public RotationDirection copy() { return new RotationDirection(KEY, DEGREE); }
 }

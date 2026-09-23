@@ -8,6 +8,380 @@
       "formation": {
         "formation": [
           {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "vertical_left.json"
+      },
+      "pos": {
+        "x": 40.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 1
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 112.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 2
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 32.0,
+        "y": 56.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 3
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 120.0,
+        "y": 56.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 4
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 48.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 5
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 104.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 7
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 40.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 8
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 112.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 9
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 32.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 10
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 120.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 11
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 8.0,
+            "y": 1.0
+          },
+          {
+            "x": 8.0,
+            "y": 3.0
+          },
+          {
+            "x": 8.0,
+            "y": 5.0
+          },
+          {
+            "x": 8.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 24.0,
+        "y": 56.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 13
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
             "x": 0.0,
             "y": 1.0
           },
@@ -24,15 +398,1987 @@
             "y": 7.0
           }
         ],
-        "FILENAME": "vertical_left.json"
+        "FILENAME": "right_slant.json"
       },
       "pos": {
-        "x": 56.0,
-        "y": 0.0
+        "x": 128.0,
+        "y": 56.0
       },
       "movements": [],
       "KEY": "",
-      "NUMBER": 1
+      "NUMBER": 12
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 8.0,
+            "y": 1.0
+          },
+          {
+            "x": 8.0,
+            "y": 3.0
+          },
+          {
+            "x": 8.0,
+            "y": 5.0
+          },
+          {
+            "x": 8.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "vertical_right.json"
+      },
+      "pos": {
+        "x": 24.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 13
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 0.0,
+            "y": 1.0
+          },
+          {
+            "x": 0.0,
+            "y": 3.0
+          },
+          {
+            "x": 0.0,
+            "y": 5.0
+          },
+          {
+            "x": 0.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "vertical_right.json"
+      },
+      "pos": {
+        "x": 128.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 14
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 32.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 15
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 120.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 16
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 40.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 17
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 112.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 18
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 48.0,
+        "y": 24.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 19
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 104.0,
+        "y": 24.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 20
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 56.0,
+        "y": 16.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 21
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "left_slant.json"
+      },
+      "pos": {
+        "x": 96.0,
+        "y": 16.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 22
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 72.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 23
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 24
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 72.0,
+        "y": 24.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 25
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": 24.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 26
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 64.0,
+        "y": 24.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 27
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 88.0,
+        "y": 24.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 28
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 56.0,
+        "y": 24.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 29
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 96.0,
+        "y": 24.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 30
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 48.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 31
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 104.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 32
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 72.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 33
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 34
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 64.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 35
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 88.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 36
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 56.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 37
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 96.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 38
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 72.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 39
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 40
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 64.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 41
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 88.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 42
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 56.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 43
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 96.0,
+        "y": 40.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 44
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 48.0,
+        "y": 56.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 45
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 104.0,
+        "y": 56.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 46
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 56.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 47
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 88.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 48
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 64.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 49
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 112.0,
+        "y": 63.111111111111114
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 50
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 40.0,
+        "y": 63.111111111111114
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 51
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 120.0,
+        "y": 63.111111111111114
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 52
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 32.0,
+        "y": 63.111111111111114
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 53
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 112.0,
+        "y": 56.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 54
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 40.0,
+        "y": 56.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 55
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 1.0
+          },
+          {
+            "x": 3.0,
+            "y": 3.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 7.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 104.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 56
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 7.0,
+            "y": 1.0
+          },
+          {
+            "x": 5.0,
+            "y": 3.0
+          },
+          {
+            "x": 3.0,
+            "y": 5.0
+          },
+          {
+            "x": 1.0,
+            "y": 7.0
+          }
+        ],
+        "FILENAME": "right_slant.json"
+      },
+      "pos": {
+        "x": 48.0,
+        "y": 48.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 57
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 96.0,
+        "y": 32.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 58
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 56.0,
+        "y": 16.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 59
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 96.0,
+        "y": 16.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 60
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": 8.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 61
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 72.0,
+        "y": 8.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 62
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 88.0,
+        "y": 8.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 63
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 64.0,
+        "y": 8.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 64
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 72.0,
+        "y": 20.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 65
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": 20.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 66
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 72.0,
+        "y": 16.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 67
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": 16.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 68
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 72.0,
+        "y": 12.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 69
+    },
+    {
+      "rotationDirection": {
+        "KEY": "SOUTH",
+        "DEGREE": 180
+      },
+      "formation": {
+        "formation": [
+          {
+            "x": 1.0,
+            "y": 8.0
+          },
+          {
+            "x": 3.0,
+            "y": 8.0
+          },
+          {
+            "x": 5.0,
+            "y": 8.0
+          },
+          {
+            "x": 7.0,
+            "y": 8.0
+          }
+        ],
+        "FILENAME": "horizontal_bottom.json"
+      },
+      "pos": {
+        "x": 80.0,
+        "y": 12.0
+      },
+      "movements": [],
+      "KEY": "",
+      "NUMBER": 70
     }
   ],
   "length": 0,

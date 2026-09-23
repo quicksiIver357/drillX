@@ -46,7 +46,7 @@ public class MainRenderer {
 
         newSquadMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         newSquadMenuItem.addActionListener(e -> { 
-            mainPanel.getDrill().squads.add(new Squad(defaultRotationDirection, defaultFormation, Squad.NO_KEY, new Point(16, 16)));
+            mainPanel.addSquad(new Squad(defaultRotationDirection.copy(), defaultFormation.copy(), Squad.NO_KEY, new Point(16, 16)));
 
             // refresh screen
             repaint();
