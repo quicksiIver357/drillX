@@ -159,12 +159,12 @@ public class FieldPanel extends JPanel {
     public Squad getSelectedSquad() { return selectedSquad; }
 
     // HELPERS
-    private Point convertToPanelCoords(int x, int y) { return new Point(x * getWidth() / 160, y * getHeight() / 640 * 9); }
+    private Point convertToPanelCoords(int x, int y) { return new Point(x * getWidth() / 160, y * getHeight() * 9 / 640); }
     // private Point convertToPanelCoords(int[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
     // private Point convertToPanelCoords(double[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
     private Point convertToPanelCoords(Point pos) { return convertToPanelCoords(pos.x, pos.y); }
 
-    private Point convertFromPanelCoords(int x, int y) { return new Point(x / getWidth() * 160, y / getHeight() * 640 / 9); }
+    private Point convertFromPanelCoords(int x, int y) { return new Point(x * 160 / getWidth(), y * 640 / 9 / getHeight()); }
     // private Point convertFromPanelCoords(int[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
     // private Point convertFromPanelCoords(double[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
     private Point convertFromPanelCoords(Point pos) { return convertFromPanelCoords(pos.x, pos.y); }
@@ -236,12 +236,19 @@ public class FieldPanel extends JPanel {
         @Override
         public void mouseDragged(MouseEvent e) {
             if (dragSquads && selectedSquad != null) { 
-                Point fieldCoords = convertFromPanelCoords(new Point(e.getPoint()));
+                Point mouseScreenPos = e.getPoint();
+                Point mouseFieldPos = convertFromPanelCoords(mouseScreenPos);
+
+                // System.out.println("Mouse Screen Pos: " + mouseScreenPos);
+                // System.out.println("Mouse field pos: " + mouseFieldPos);
 
                 if (snapToGrid) { 
-                    selectedSquad.setCenterPos(new Point(snapToGridSize * (int) Math.round(fieldCoords.getX() / snapToGridSize), snapToGridSize * (int) Math.round(fieldCoords.getY() / snapToGridSize))); 
+                    int x = snapToGridSize * (int) Math.round(mouseFieldPos.getX() / snapToGridSize);
+                    int y = snapToGridSize * (int) Math.round(mouseFieldPos.getY() / snapToGridSize);
+
+                    selectedSquad.setCenterPos(new Point(x, y));
                 } 
-                else { selectedSquad.setCenterPos(fieldCoords); }
+                else { selectedSquad.setCenterPos(mouseFieldPos); }
 
                 // readjust if needed
                 // x
