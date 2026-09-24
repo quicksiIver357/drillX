@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import main.java.io.quicksiiver.drillx.Main;
 import main.java.io.quicksiiver.drillx.field.Formation;
 import main.java.io.quicksiiver.drillx.field.RotationDirection;
 import main.java.io.quicksiiver.drillx.field.Squad;
@@ -21,7 +22,7 @@ public class SquadPanel extends JPanel {
     // stuff for drawing
     private JTextArea noSquadSelectedText = new JTextArea("No squad selected. Click on a squad to select it.");
     private JComboBox<RotationDirection> rotationDirectionSelector = new JComboBox<>(RotationDirection.ROTATION_DIRECTIONS);
-    private JComboBox<Formation> formationSelector = new JComboBox<>(Formation.ALL_FORMATIONS);
+    private JComboBox<Formation> formationSelector = new JComboBox<>(Main.ALL_FORMATIONS.values().toArray(new Formation[0]));
 
     // LABELS
     private JLabel rotationDirectionSelectorLabel = new JLabel("Rotation: ");

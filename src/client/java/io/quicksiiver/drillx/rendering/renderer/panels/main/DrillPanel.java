@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.java.io.quicksiiver.drillx.Main;
 import main.java.io.quicksiiver.drillx.field.Formation;
 import main.java.io.quicksiiver.drillx.field.RotationDirection;
 
@@ -21,7 +22,7 @@ public class DrillPanel extends JPanel {
 
     // stuff on the panel
     private JButton toggleFieldViewButton = new JButton(drawMode); // starts off as yard
-    private JComboBox<Formation> defaultFormationComboBox = new JComboBox<>(Formation.ALL_FORMATIONS);
+    private JComboBox<Formation> defaultFormationComboBox = new JComboBox<>(Main.ALL_FORMATIONS.values().toArray(new Formation[0]));
     private JComboBox<RotationDirection> defaultRotationDirectionComboBox = new JComboBox<>(RotationDirection.ROTATION_DIRECTIONS);
     private JCheckBox toggleSquadNumbersCheckBox = new JCheckBox("Show Numbers");
     private JCheckBox showArrowsCheckBox = new JCheckBox("Show Arrows");

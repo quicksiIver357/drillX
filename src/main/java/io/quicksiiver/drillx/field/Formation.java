@@ -1,15 +1,13 @@
 package main.java.io.quicksiiver.drillx.field;
 
+import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
-
-import main.java.io.quicksiiver.drillx.coordinates.Point;
 
 public class Formation {
     public Point[] formation;
@@ -18,56 +16,20 @@ public class Formation {
     // classifiers
     public static final String NO_FILENAME = "N/A";
 
-    // preset (relative to top left of squad)
-    public static final Formation HORIZONTAL_TOP = new Formation(new Point[] {
-        new Point(1, 0), 
-        new Point(3, 0), 
-        new Point(5, 0), 
-        new Point(7, 0)
-    }, "horizontal_top.json");
+    public static final String HORIZONTAL_TOP = "horizontal_top.json";
+    public static final String HORIZONTAL_BOTTOM = "horizontal_bottom.json";
+    public static final String VERTICAL_LEFT = "vertical_left.json";
+    public static final String VERTICAL_RIGHT = "vertical_right.json";
+    public static final String LEFT_SLANT = "left_slant.json";
+    public static final String RIGHT_SLANT = "right_slant.json";
 
-    public static final Formation HORIZONTAL_BOTTOM = new Formation(new Point[] {
-        new Point(1, 8), 
-        new Point(3, 8), 
-        new Point(5, 8), 
-        new Point(7, 8)
-    }, "horizontal_bottom.json");
-
-    public static final Formation VERTICAL_LEFT = new Formation(new Point[] {
-        new Point(0, 1), 
-        new Point(0, 3), 
-        new Point(0, 5), 
-        new Point(0, 7)
-    }, "vertical_left.json");
-
-    public static final Formation VERTICAL_RIGHT = new Formation(new Point[] {
-        new Point(8, 1), 
-        new Point(8, 3), 
-        new Point(8, 5), 
-        new Point(8, 7)
-    }, "vertical_right.json");
-
-    public static final Formation LEFT_SLANT = new Formation(new Point[] {
-        new Point(1, 1), 
-        new Point(3, 3), 
-        new Point(5, 5), 
-        new Point(7, 7)
-    }, "left_slant.json");
-
-    public static final Formation RIGHT_SLANT = new Formation(new Point[] {
-        new Point(7, 1), 
-        new Point(5, 3), 
-        new Point(3, 5), 
-        new Point(1, 7)
-    }, "right_slant.json");
-
-    public static final Formation[] ALL_FORMATIONS = {HORIZONTAL_TOP, HORIZONTAL_BOTTOM, VERTICAL_LEFT, VERTICAL_RIGHT, LEFT_SLANT, RIGHT_SLANT};
+    // public static final Formation[] ALL_FORMATIONS = {HORIZONTAL_TOP, HORIZONTAL_BOTTOM, VERTICAL_LEFT, VERTICAL_RIGHT, LEFT_SLANT, RIGHT_SLANT};
 
 
 
     // // transitions
-    // public static final SquadFormation[] HORIZONTAL_TO_LEFT_SLANT = {
-    //     new SquadFormation(HORIZONTAL_TOP)
+    // public static final Formation[] HORIZONTAL_TO_LEFT_SLANT = {
+    //     new Formation(HORIZONTAL_TOP)
     // };
 
     // constructors
@@ -81,29 +43,27 @@ public class Formation {
         FILENAME = filename;
     }
     public Formation(Formation formation, String filename) {
-        this.formation = formation.formation;
+        this.formation = formation.formation.clone();
         FILENAME = filename;
     }
 
     // LOADING
     public static Formation loadFormation(Gson gson, Path path) throws IOException {
-        // read the data into a double[][] and then convert to a Point[] and then to SquadFormation
+        // read the data into a double[][] and then convert to a Point[] and then to Formation
         // read data
         String json = Files.readString(path);
-        double[][] formationArray = gson.fromJson(json, double[][].class);
+        int[][] formationArray = gson.fromJson(json, int[][].class);
 
         // create point array and store values
         Point[] pointArray = new Point[formationArray.length];
-        for (int i = 0; i < pointArray.length; i++) {
-            pointArray[i] = new Point(formationArray[i]);
-        }
+        for (int i = 0; i < pointArray.length; i++) { pointArray[i] = new Point(formationArray[i][0], formationArray[i][1]); }
 
-        // convert to SquadFormation and return
+        // convert to Formation and return
         return new Formation(pointArray, path.getFileName().toString());
     }
     public static HashMap<String, Formation> loadAllFormations(Gson gson, Path path) {
-        // for each file in the formations folder, load it to a SquadFormation and store it
-        // create a HashMap to store the SquadFormations based on the file names
+        // for each file in the formations folder, load it to a Formation and store it
+        // create a HashMap to store the Formations based on the file names
         // create HashMap
         HashMap<String, Formation> formations = new HashMap<>();
 
@@ -150,7 +110,7 @@ public class Formation {
     // debug
     public void printInfo() {
         for (Point p : formation) {
-            System.out.println("Pos: " + Arrays.toString(p.getPos()));
+            System.out.println("Pos: [" + p.x + ", " + p.y + "]");
         }
 
         System.out.println("Filename: " + FILENAME);

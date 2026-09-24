@@ -1,5 +1,7 @@
 package main.java.io.quicksiiver.drillx.field;
 
+import java.awt.Point;
+
 public class RotationDirection {
     // variables
     public final String KEY;
@@ -52,8 +54,17 @@ public class RotationDirection {
     public RotationDirection apply(RotationAction rotationAction) {
         return getRotationDirectionFromDegree(this.DEGREE + rotationAction.DEGREE);
     }
+    public Point applySimpleDirectionalMovement(final Point p, double ma) { // rd rotationDirection, ma movementAmount
+        // applies a movement amount to a position using a RotationDirection object to choose which way to go
+        if (equals(RotationDirection.NORTH) || equals(RotationDirection.NORTHEAST) || equals(RotationDirection.NORTHWEST)) { p.y -= ma; } 
+        if (equals(RotationDirection.SOUTH) || equals(RotationDirection.SOUTHEAST) || equals(RotationDirection.SOUTHWEST)) { p.y += ma; } 
+        if (equals(RotationDirection.EAST) || equals(RotationDirection.NORTHEAST) || equals(RotationDirection.SOUTHEAST)) { p.x += ma; } 
+        if (equals(RotationDirection.WEST) || equals(RotationDirection.NORTHWEST) || equals(RotationDirection.SOUTHWEST)) { p.x -= ma; }
 
+        return p;
+    }
 
+    // misc
     public boolean equals(Object obj) { 
         if (this == obj) { return true; } // same reference
         if (!(obj instanceof RotationDirection)) { return false; } // not same type

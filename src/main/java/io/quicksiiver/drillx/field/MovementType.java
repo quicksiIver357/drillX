@@ -16,14 +16,14 @@ public class MovementType {
 
     // movement types
     public static final MovementType FORWARD_MARCH = new MovementType("FM", new FormationAnimation[] {
-        new FormationAnimation(0, Formation.HORIZONTAL_BOTTOM.FILENAME, Formation.HORIZONTAL_TOP.FILENAME, RotationDirection.NORTH),
-        new FormationAnimation(0, Formation.HORIZONTAL_TOP.FILENAME, Formation.HORIZONTAL_BOTTOM.FILENAME, RotationDirection.SOUTH),
-        new FormationAnimation(0, Formation.VERTICAL_LEFT.FILENAME, Formation.VERTICAL_RIGHT.FILENAME, RotationDirection.EAST),
-        new FormationAnimation(0, Formation.VERTICAL_RIGHT.FILENAME, Formation.VERTICAL_LEFT.FILENAME, RotationDirection.WEST),
-        new FormationAnimation(-8, Formation.HORIZONTAL_BOTTOM.FILENAME, Formation.HORIZONTAL_TOP.FILENAME, RotationDirection.SOUTH),
-        new FormationAnimation(-8, Formation.HORIZONTAL_TOP.FILENAME, Formation.HORIZONTAL_BOTTOM.FILENAME, RotationDirection.NORTH),
-        new FormationAnimation(-8, Formation.VERTICAL_LEFT.FILENAME, Formation.VERTICAL_RIGHT.FILENAME, RotationDirection.WEST),
-        new FormationAnimation(-8, Formation.VERTICAL_RIGHT.FILENAME, Formation.VERTICAL_LEFT.FILENAME, RotationDirection.EAST)
+        new FormationAnimation(0, Formation.HORIZONTAL_BOTTOM, Formation.HORIZONTAL_TOP, RotationDirection.NORTH),
+        new FormationAnimation(0, Formation.HORIZONTAL_TOP, Formation.HORIZONTAL_BOTTOM, RotationDirection.SOUTH),
+        new FormationAnimation(0, Formation.VERTICAL_LEFT, Formation.VERTICAL_RIGHT, RotationDirection.EAST),
+        new FormationAnimation(0, Formation.VERTICAL_RIGHT, Formation.VERTICAL_LEFT, RotationDirection.WEST),
+        new FormationAnimation(-8, Formation.HORIZONTAL_BOTTOM, Formation.HORIZONTAL_TOP, RotationDirection.SOUTH),
+        new FormationAnimation(-8, Formation.HORIZONTAL_TOP, Formation.HORIZONTAL_BOTTOM, RotationDirection.NORTH),
+        new FormationAnimation(-8, Formation.VERTICAL_LEFT, Formation.VERTICAL_RIGHT, RotationDirection.WEST),
+        new FormationAnimation(-8, Formation.VERTICAL_RIGHT, Formation.VERTICAL_LEFT, RotationDirection.EAST)
     });
     // public static final MovementType LEFT_SLANT = new MovementType("SL", new String[] {
     //     SquadFormationAnimation.getFMAFilename(HORIZONTAL_BOTTOM_FILENAME, SLANT_LEFT_FILENAME),

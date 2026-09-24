@@ -59,12 +59,12 @@ public class MainPanel extends JPanel {
         drillPanel.addSnapToGridCheckBoxListener(e -> { fieldPanel.snapToGrid = !fieldPanel.snapToGrid; });
 
         squadPanel.addRotationDirectionSelectorListener(e -> {
-            fieldPanel.setRotationDirection(getSelection(RotationDirection.EAST, e)); // apply it
+            fieldPanel.setRotationDirection(getSelection(RotationDirection.class, e)); // apply it
             repaint();
         });
         squadPanel.addFormationSelectorListener(e -> { 
             // you can pass in any formation just for the type
-            fieldPanel.setFormation(getSelection(Formation.LEFT_SLANT, e)); 
+            fieldPanel.setFormation(getSelection(Formation.class, e)); 
             repaint();
         });
         // ------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ public class MainPanel extends JPanel {
         fieldPanel.setDrawMode(drawMode);
         drillPanel.setDrawMode(drawMode);
     }
-    public <T> T getSelection(T type, ActionEvent e) {
+    public <T> T getSelection(Class<T> clazz, ActionEvent e) {
         // get the selection
         @SuppressWarnings("unchecked") // stop yellow underline
         JComboBox<T> formationSelector = (JComboBox<T>) e.getSource();

@@ -1,5 +1,6 @@
 package main.java.io.quicksiiver.drillx.field;
 
+import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +10,6 @@ import java.util.HashMap;
 import com.google.gson.Gson;
 
 import main.java.io.quicksiiver.drillx.Main;
-import main.java.io.quicksiiver.drillx.coordinates.Point;
 
 public class FormationAnimation {
     // instance variables
@@ -70,16 +70,16 @@ public class FormationAnimation {
         return formations;
     }
     public static Formation[] loadFormationAnimation(Gson gson, Path path) throws IOException {
-        // read the data into a double[][] and then convert to a Point[] and then to SquadFormation
+        // read the data into a int[][] and then convert to a Point[] and then to SquadFormation
         // read data
         String json = Files.readString(path);
-        double[][][] formationArray = gson.fromJson(json, double[][][].class);
+        int[][][] formationArray = gson.fromJson(json, int[][][].class);
 
         // create point array and store values
         Point[][] pointArray = new Point[formationArray.length][formationArray[0].length];
         for (int i = 0; i < pointArray.length; i++) {
             for (int j = 0; j < pointArray[i].length; j++) {
-                pointArray[i][j] = new Point(formationArray[i][j]);
+                pointArray[i][j] = new Point(formationArray[i][j][0], formationArray[i][j][1]);
             }
         }
 

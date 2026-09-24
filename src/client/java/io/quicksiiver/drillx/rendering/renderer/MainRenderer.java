@@ -1,5 +1,6 @@
 package client.java.io.quicksiiver.drillx.rendering.renderer;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -12,7 +13,6 @@ import javax.swing.KeyStroke;
 import client.java.io.quicksiiver.drillx.rendering.renderer.input.MainWindowListener;
 import client.java.io.quicksiiver.drillx.rendering.renderer.panels.main.MainPanel;
 import main.java.io.quicksiiver.drillx.Main;
-import main.java.io.quicksiiver.drillx.coordinates.Point;
 import main.java.io.quicksiiver.drillx.field.Drill;
 import main.java.io.quicksiiver.drillx.field.Formation;
 import main.java.io.quicksiiver.drillx.field.RotationDirection;
@@ -33,7 +33,7 @@ public class MainRenderer {
     private JMenuItem deleteSquadMenuItem = new JMenuItem("Delete Selected Squad");
 
     private RotationDirection defaultRotationDirection = RotationDirection.NORTH;
-    private Formation defaultFormation = Formation.HORIZONTAL_BOTTOM;
+    private Formation defaultFormation = Main.ALL_FORMATIONS.get(Formation.HORIZONTAL_BOTTOM);
 
     private MainRenderer() { // hides default constructor
         // set up the window
@@ -59,8 +59,8 @@ public class MainRenderer {
         });
 
         // actionListeners for mainPanel (drillPanel)
-        mainPanel.addDefaultFormationComboBoxListener(e -> { defaultFormation = mainPanel.getSelection(Formation.HORIZONTAL_BOTTOM, e); });
-        mainPanel.addDefaultRotationDirectionComboBoxListener(e -> { defaultRotationDirection = mainPanel.getSelection(RotationDirection.EAST, e); });
+        mainPanel.addDefaultFormationComboBoxListener(e -> { defaultFormation = mainPanel.getSelection(Formation.class, e); });
+        mainPanel.addDefaultRotationDirectionComboBoxListener(e -> { defaultRotationDirection = mainPanel.getSelection(RotationDirection.class, e); });
 
         fileMenu.add(saveMenuItem);
         fieldMenu.add(newSquadMenuItem);

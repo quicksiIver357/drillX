@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -13,7 +14,6 @@ import java.security.InvalidParameterException;
 import javax.swing.JPanel;
 
 import client.java.io.quicksiiver.drillx.rendering.renderer.misc.Theme;
-import main.java.io.quicksiiver.drillx.coordinates.Point;
 import main.java.io.quicksiiver.drillx.field.Drill;
 import main.java.io.quicksiiver.drillx.field.Formation;
 import main.java.io.quicksiiver.drillx.field.RotationDirection;
@@ -100,7 +100,7 @@ public class FieldPanel extends JPanel {
                 // CALCULATIONS
                 Squad squad = drill.getSquads().get(i);
                 // calculate x and y that should be drawn on screen
-                Point screenPos = convertToPanelCoords(squad.getPos().getX(), squad.getPos().getY());
+                Point screenPos = convertToPanelCoords(squad.getPos().x, squad.getPos().y);
                 int x = (int) screenPos.getX();
                 int y = (int) screenPos.getY();
 
@@ -132,7 +132,7 @@ public class FieldPanel extends JPanel {
                     g2d.drawString(squad.getKey() + (i + 1), (int) (squadCenter.getX()), (int) (squadCenter.getY()));
                 } if (showArrows) { // should NOT be else if
                     Point arrowHead = new Point(squadCenter);
-                    arrowHead.applySimpleDirectionalMovement(squad.getRotationDirection(), getWidth() / 50.0);
+                    arrowHead = squad.getRotationDirection().applySimpleDirectionalMovement(arrowHead, getWidth() / 50.0);
 
                     // System.out.println("arrowHead: " + arrowHead); // debug
                     // System.out.println("squad pos: " + x + y);
@@ -159,15 +159,15 @@ public class FieldPanel extends JPanel {
     public Squad getSelectedSquad() { return selectedSquad; }
 
     // HELPERS
-    private Point convertToPanelCoords(double x, double y) { return new Point(x * getWidth() / 160, y * getHeight() / 640 * 9); }
+    private Point convertToPanelCoords(int x, int y) { return new Point(x * getWidth() / 160, y * getHeight() / 640 * 9); }
     // private Point convertToPanelCoords(int[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
     // private Point convertToPanelCoords(double[] pos) { return convertToPanelCoords(pos[0], pos[1]); }
-    private Point convertToPanelCoords(Point pos) { return convertToPanelCoords(pos.getX(), pos.getY()); }
+    private Point convertToPanelCoords(Point pos) { return convertToPanelCoords(pos.x, pos.y); }
 
-    private Point convertFromPanelCoords(double x, double y) { return new Point(x / getWidth() * 160, y / getHeight() * 640 / 9); }
+    private Point convertFromPanelCoords(int x, int y) { return new Point(x / getWidth() * 160, y / getHeight() * 640 / 9); }
     // private Point convertFromPanelCoords(int[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
     // private Point convertFromPanelCoords(double[] pos) { return convertFromPanelCoords(pos[0], pos[1]); }
-    private Point convertFromPanelCoords(Point pos) { return convertFromPanelCoords(pos.getX(), pos.getY()); }
+    private Point convertFromPanelCoords(Point pos) { return convertFromPanelCoords(pos.x, pos.y); }
 
 
     // Source - https://stackoverflow.com/a/27461352
@@ -211,7 +211,7 @@ public class FieldPanel extends JPanel {
     private class MouseList implements MouseListener, MouseMotionListener {
         @Override
         public void mousePressed(MouseEvent e) {
-            Point pos = new Point(e.getPoint()); // converts from java point to my point
+            Point pos = e.getPoint();
 
             // System.out.println("clicked!");
             
@@ -220,7 +220,7 @@ public class FieldPanel extends JPanel {
                     // System.out.println("Squad: " + convertToScreenCoords(s.getCenterPos()));
                     // System.out.println("pos: " + pos);
 
-                    if (convertToPanelCoords(s.getCenterPos()).near(pos, getWidth() / 40)) { // check if they clicked near it
+                    if (near(pos, convertToPanelCoords(s.getCenterPos()), getWidth() / 40)) { // check if they clicked near it
                         // System.out.println("test");
                         mainPanel.setSelectedSquad(s);
                         repaint();
@@ -239,21 +239,21 @@ public class FieldPanel extends JPanel {
                 Point fieldCoords = convertFromPanelCoords(new Point(e.getPoint()));
 
                 if (snapToGrid) { 
-                    selectedSquad.setCenterPos(new Point(snapToGridSize * Math.round(fieldCoords.getX() / snapToGridSize), snapToGridSize * Math.round(fieldCoords.getY() / snapToGridSize))); 
+                    selectedSquad.setCenterPos(new Point(snapToGridSize * (int) Math.round(fieldCoords.getX() / snapToGridSize), snapToGridSize * (int) Math.round(fieldCoords.getY() / snapToGridSize))); 
                 } 
                 else { selectedSquad.setCenterPos(fieldCoords); }
 
                 // readjust if needed
                 // x
                 if (selectedSquad.getPos().getX() < 0) { selectedSquad.setX(0); }
-                else if (convertToPanelCoords(selectedSquad.getBottomRightPos()).getX() > getWidth()) { 
-                    selectedSquad.setBottomRightPos(new Point(convertFromPanelCoords(getWidth(), 0).getX(), selectedSquad.getBottomRightPos().getY())); 
+                else if (convertToPanelCoords(selectedSquad.getPos()).getX() + 8 > getWidth()) { 
+                    selectedSquad.setPos(new Point(convertFromPanelCoords(getWidth(), 0).x - 8, selectedSquad.getPos().y)); 
                 }
 
                 // y
                 if (selectedSquad.getPos().getY() < 0) { selectedSquad.setY(0); }
-                else if (convertToPanelCoords(selectedSquad.getBottomRightPos()).getY() > getHeight()) { 
-                    selectedSquad.setBottomRightPos(new Point(selectedSquad.getBottomRightPos().getX(), convertFromPanelCoords(0, getHeight()).getY())); 
+                else if (convertToPanelCoords(selectedSquad.getPos()).getY() + 8 > getHeight()) { 
+                    selectedSquad.setPos(new Point(selectedSquad.getPos().x, convertFromPanelCoords(0, getHeight()).y - 8));
                 }
 
                 repaint();
@@ -272,5 +272,11 @@ public class FieldPanel extends JPanel {
         public void mouseClicked(MouseEvent e) {}
         @Override
         public void mouseMoved(MouseEvent e) {}
+
+        // helpers
+        private static boolean near(Point p1, Point p2, double r) {
+            if (r*r >= Math.pow(p2.getX() - p1.getX(), 2) + Math.pow(p2.getY() - p1.getY(), 2)) { return true; }
+            else { return false; }
+        }
     }
 }

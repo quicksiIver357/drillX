@@ -1,10 +1,11 @@
 package main.java.io.quicksiiver.drillx.field;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import main.java.io.quicksiiver.drillx.coordinates.Point;
+import main.java.io.quicksiiver.drillx.Main;
 
 public class Squad {
     // variables
@@ -39,7 +40,7 @@ public class Squad {
             NUMBER = 1;
         }
     }
-    public Squad(final String key) { this(RotationDirection.NORTH, Formation.HORIZONTAL_TOP, key, new Point(16, 16)); }
+    public Squad(final String key) { this(RotationDirection.NORTH, Main.ALL_FORMATIONS.get(Formation.HORIZONTAL_TOP), key, new Point(16, 16)); }
     public Squad() { this(Squad.NO_KEY); }
     public Squad(Squad s) { this(s.getRotationDirection(), s.getFormation(), s.getKey(), s.getPos()); }
 
@@ -51,26 +52,26 @@ public class Squad {
     public Point getPos() { return new Point(pos); }
     public int getNumberOfSquadMembers() { return formation.formation.length; }
     public Point getCenterPos() {
-        double tx = 0;
-        double ty = 0;
+        int tx = 0;
+        int ty = 0;
         
         for (int i = 0; i < formation.formation.length; i++) {
-            tx += formation.formation[i].getX();
-            ty += formation.formation[i].getY();
+            tx += formation.formation[i].x;
+            ty += formation.formation[i].y;
         }
 
-        return new Point(getPos().getX() + tx / formation.formation.length, getPos().getY() + ty / formation.formation.length);
+        return new Point(getPos().x + tx / formation.formation.length, getPos().y + ty / formation.formation.length);
     }
     public Point getBottomRightPos() {
         // offset from getPos()
-        double x = 8; 
-        double y = 8;
+        int x = 8; 
+        int y = 8;
 
         // change it if required
         if (Math.max(Math.max(formation.formation[0].getX(), formation.formation[1].getX()), Math.max(formation.formation[2].getX(), formation.formation[3].getX())) == 0) { x = 0; }
         if (Math.max(Math.max(formation.formation[0].getY(), formation.formation[1].getY()), Math.max(formation.formation[2].getY(), formation.formation[3].getY())) == 0) { y = 0; }
 
-        return new Point(getPos().getX() + x, getPos().getY() + y);
+        return new Point(getPos().x + x, getPos().y + y);
     }
 
     // SETTERS
@@ -88,19 +89,19 @@ public class Squad {
         Point centerPos = getCenterPos();
         Point topLeftPos = getPos();
 
-        Point offset = new Point(centerPos.getX() - topLeftPos.getX(), centerPos.getY() - topLeftPos.getY());
-        setPos(new Point(pos.getX() - offset.getX(), pos.getY() - offset.getY()));
+        Point offset = new Point(centerPos.x - topLeftPos.x, centerPos.y - topLeftPos.y);
+        setPos(new Point(pos.x - offset.x, pos.y - offset.y));
     }
-    public void setX(double x) { this.pos.setX(x); }
-    public void setY(double y) { this.pos.setY(y); }
-    public void setBottomRightPos(Point pos) { setPos(new Point(pos.getX() - getBottomRightPos().getX() + getPos().getX(), pos.getY() - getBottomRightPos().getY() + getPos().getY())); }
+    public void setX(int x) { this.pos.x = x; }
+    public void setY(int y) { this.pos.y = y; }
+    public void setBottomRightPos(Point pos) { setPos(new Point(pos.x - getBottomRightPos().x + getPos().x, pos.y - getBottomRightPos().y + getPos().y)); }
 
     // functions
     // applies a movement
     public void applyMovement(MovementType movement) {
         // check each movement type
         if (movement.KEY.equals(MovementType.FORWARD_MARCH.KEY)) {
-            if (getFormation().formation.equals(Formation.HORIZONTAL_BOTTOM.formation))
+            if (getFormation().formation.equals(Main.ALL_FORMATIONS.get(Formation.HORIZONTAL_BOTTOM).formation))
             translateSquad(rotationDirection, 1);
         }
     }
@@ -117,7 +118,7 @@ public class Squad {
 
         // loop through each squad member and copy the positions to a new point
         for (int i = 0; i < formation.formation.length; i++) {
-            newPositions.formation[i] = new Point(formation.formation[i].getX() + tranlationPoints[i].getX(), formation.formation[i].getY() + tranlationPoints[i].getY());
+            newPositions.formation[i] = new Point(formation.formation[i].x + tranlationPoints[i].x, formation.formation[i].y + tranlationPoints[i].y);
         }
 
         setFormation(newPositions); // apply changes
