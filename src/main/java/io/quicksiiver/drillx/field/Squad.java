@@ -101,7 +101,10 @@ public class Squad {
     public void applyMovement(MovementType movement) {
         // check each movement type
         if (movement.KEY.equals(MovementType.FORWARD_MARCH.KEY)) {
-            if (getFormation().formation.equals(Main.ALL_FORMATIONS.get(Formation.HORIZONTAL_BOTTOM).formation))
+            boolean formationIsHorizontal = formation.equals(Main.ALL_FORMATIONS.get(Formation.HORIZONTAL_BOTTOM)) || formation.equals(Main.ALL_FORMATIONS.get(Formation.HORIZONTAL_TOP));
+            boolean rotationDirectionIsHorizontal = rotationDirection.equals(RotationDirection.EAST) || rotationDirection.equals(RotationDirection.WEST);
+
+            
             translateSquad(rotationDirection, 1);
         }
     }

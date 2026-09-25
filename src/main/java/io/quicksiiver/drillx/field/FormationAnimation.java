@@ -11,32 +11,12 @@ import com.google.gson.Gson;
 
 import main.java.io.quicksiiver.drillx.Main;
 
-public class FormationAnimation {
-    // instance variables
-    public final int SHIFT;
-    public final String FILENAME;
-    public final String START_FORMATION_FILENAME;
-    public final String END_FORMATION_FILENAME;
-    public final Formation[] FMA; // formation animation
-    public final RotationDirection REQUIRED_ROTATION_DIRECTION;
+public record FormationAnimation(int shift, String filename, String startFormationFilename, String endFormationFilename, Formation[] fma, RotationDirection requiredRotationDirection) {
 
-    // constructors
-    // public SquadFormationAnimation(int shift, String filename, SquadFormation[] fma, RotationDirection requiredRotationDirection) {
-    //     SHIFT = shift;
-    //     FILENAME = filename;
-    //     FMA = fma;
-    //     REQUIRED_ROTATION_DIRECTION = requiredRotationDirection;
-    // }
     public FormationAnimation(int shift, String startFilename, String endFilename, RotationDirection requiredRotationDirection) {
         String completeFilename = getFMAFilename(startFilename, endFilename);
 
-        // assign variables
-        SHIFT = shift;
-        FILENAME = completeFilename;
-        START_FORMATION_FILENAME = startFilename;
-        END_FORMATION_FILENAME = endFilename;
-        FMA = Main.ALL_FORMATION_ANIMATIONS.get(completeFilename);
-        REQUIRED_ROTATION_DIRECTION = requiredRotationDirection;
+        this(shift, completeFilename, startFilename, endFilename, Main.ALL_FORMATION_ANIMATIONS.get(completeFilename), requiredRotationDirection);
     }
     
     // LOADING 

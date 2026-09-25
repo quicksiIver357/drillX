@@ -20,20 +20,11 @@ public class Formation {
     public static final String HORIZONTAL_BOTTOM = "horizontal_bottom.json";
     public static final String VERTICAL_LEFT = "vertical_left.json";
     public static final String VERTICAL_RIGHT = "vertical_right.json";
-    public static final String LEFT_SLANT = "left_slant.json";
-    public static final String RIGHT_SLANT = "right_slant.json";
-
-    // public static final Formation[] ALL_FORMATIONS = {HORIZONTAL_TOP, HORIZONTAL_BOTTOM, VERTICAL_LEFT, VERTICAL_RIGHT, LEFT_SLANT, RIGHT_SLANT};
-
-
-
-    // // transitions
-    // public static final Formation[] HORIZONTAL_TO_LEFT_SLANT = {
-    //     new Formation(HORIZONTAL_TOP)
-    // };
+    public static final String SLANT_LEFT = "left_slant.json";
+    public static final String SLANT_RIGHT = "right_slant.json";
 
     // constructors
-    public Formation(Point[] formation, String filename) {
+    public Formation(final Point[] formation, final String filename) {
         // automatically handle creating new points if the array is nulls
         if (formation[0] == null) {
             for (int i = 0; i < formation.length; i++) { formation[i] = new Point(); }
